@@ -23,6 +23,10 @@
       "@craftsjs/core": [
         "dist/craftsjs/core/craftsjs-core",
         "dist/craftsjs/core"
+      ],
+      "@craftsjs/alert": [
+        "dist/craftsjs/alert/craftsjs-alert",
+        "dist/craftsjs/alert"
       ]
     }
   },
