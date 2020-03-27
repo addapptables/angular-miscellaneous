@@ -27,6 +27,10 @@
       "@craftsjs/alert": [
         "dist/craftsjs/alert/craftsjs-alert",
         "dist/craftsjs/alert"
+      ],
+      "@craftsjs/menu-admin": [
+        "dist/craftsjs/menu-admin/craftsjs-menu-admin",
+        "dist/craftsjs/menu-admin"
       ]
     }
   },
