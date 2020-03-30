@@ -5,7 +5,7 @@ import { MenuModel } from '../../../../models/menu.model';
 import { MenuService } from '../../../../services/menu.service';
 
 @Component({
-    selector: 'craftsjs-menu-group',
+    selector: 'menu-group',
     templateUrl: './menu-group.component.html',
     styleUrls: ['./menu-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

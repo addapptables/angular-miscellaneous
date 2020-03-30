@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { selectAllScreen } from '@craftsjs/responsive';
+import { selectAllScreen } from '@craftsjs/core';
 import { map, distinctUntilChanged, shareReplay } from 'rxjs/operators';
 import { Observable, combineLatest } from 'rxjs';
 import { MenuOpened } from '../actions/menu.actions';

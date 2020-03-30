@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertModel } from '../models/alert.model';
 import { AlertEnum } from '../models/alert-enum.model';
-import { CraftsjsDialogAlertComponent } from '../components/craftsjs-dialog-alert/craftsjs-dialog-alert.component';
+import { DialogAlertComponent } from '../components/dialog-alert/dialog-alert.component';
 
 @Injectable()
 export class AlertService {
@@ -58,7 +58,7 @@ export class AlertService {
   }
 
   private _open(alertModel: AlertModel) {
-    return this._dialog.open(CraftsjsDialogAlertComponent, {
+    return this._dialog.open(DialogAlertComponent, {
       width: '500px',
       data: alertModel
     });

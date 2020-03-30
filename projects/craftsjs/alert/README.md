@@ -13,7 +13,7 @@ Choose the version corresponding to your Angular version:
 
  | Angular | @craftsjs/alert |
  | ------- | --------------- |
- | 9       | 0.0.x           |
+ | 9       | 1.x             |
 
 ```
 npm i @craftsjs/alert --S
@@ -110,17 +110,17 @@ export class AlertComponent {
     <button type="button" mat-raised-button color="primary" (click)="openDialog()">Alert warning</button>
 ```
 
-- Finaly, it is important to import the styles to the application
+- Finally, it is important to import the styles to the application
 
 ```scss
 @import '~@craftsjs/alert/craftsjs-alert.theme';
 @import '~@angular/material/theming';
 
-$addapptable-app-primary: mat-palette($mat-teal, 800);
-$addapptable-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$addapptable-app-warn: mat-palette($mat-red);
-$addapptable-app-theme: mat-light-theme($addapptable-app-primary, $addapptable-app-accent, $addapptable-app-warn);
-$addapptable-theme-variables: (
+$craftsjs-app-primary: mat-palette($mat-teal, 800);
+$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
+$craftsjs-app-warn: mat-palette($mat-red);
+$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+$craftsjs-theme-variables: (
     color-info: #20a9d2,
     color-success: #5cb85c,
     color-danger: #d43934,
@@ -129,12 +129,12 @@ $addapptable-theme-variables: (
 
 @include mat-core();
 body.theme-default{
-    @include angular-material-theme($addapptable-app-theme);
-    @include addapptable-alert($addapptable-theme-variables);
+    @include angular-material-theme($craftsjs-app-theme);
+    @include alert($craftsjs-theme-variables);
 }
 ```
 
-- Do not forget to put the theme-default class in the html body
+- Don't forget to put the theme-default class in the html body
 
 ```html
 <body class="theme-default"></body>

@@ -1,4 +1,4 @@
-import { Store, Action } from '@craftsjs/ngrx-actions';
+import { Store, Action } from '@craftsjs/ngrx-action';
 import { MenuStoreModel } from '../models/menu.store.model';
 import { MenusLoaded, MenuMiniActivated, MenuOpened } from '../actions/menu.actions';
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MenuService } from '../../../../services/menu.service';
 
 @Component({
-    selector: 'craftsjs-menu-single',
+    selector: 'menu-single',
     templateUrl: './menu-single.component.html',
     styleUrls: ['./menu-single.component.scss'],
     host: {

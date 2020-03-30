@@ -13,7 +13,7 @@ Choose the version corresponding to your Angular version:
 
  | Angular | @craftsjs/menu-admin |
  | ------- | -------------------- |
- | 9       | 0.0.1                |
+ | 9       | 1.x                  |
 
 ```
 npm i @craftsjs/menu-admin --S
@@ -140,8 +140,8 @@ export class MenuComponent {
 
     // user data
     user: MenuUserModel = {
-        initialName: 'MG',
-        fullName: 'Mateo Guerra',
+        initialName: 'Cf',
+        fullName: 'Craftsjs',
         email: 'dev@craftsjs.com',
         avatarUrl: 'assets/images/avatars/Velazquez.jpg'
     };
@@ -151,42 +151,42 @@ export class MenuComponent {
 - So now you can use the variables into the html as follows
 
 ```html
-<addapptable-menu>
-  <addapptable-menu-header [header]="header">
-  </addapptable-menu-header>
-  <addapptable-menu-user [user]="user">
-  </addapptable-menu-user>
-  <addapptable-menu-items-link [menus]="menus">
-  </addapptable-menu-items-link>
-</addapptable-menu>
+<menu>
+  <menu-header [header]="header">
+  </menu-header>
+  <menu-user [user]="user">
+  </menu-user>
+  <menu-items-link [menus]="menus">
+  </menu-items-link>
+</menu>
 ```
 
-- In cellphone mode you can use the following component to colpase the menu
+- In cellphone mode you can use the following component to collapse the menu
 
 ```html
-    <addapptable-colapse-button-mobile></addapptable-colapse-button-mobile>
+    <button-mobile></button-mobile>
 ```
 
-- Finaly, it is important to import the styles to the application
+- Finally, it is important to import the styles to the application
 
 ```scss
 @import '~@craftsjs/core/craftsjs-grid.theme';
 @import '~@angular/material/theming';
 @import '~@craftsjs/menu/_craftsjs-menu.theme.scss';
 
-$addapptable-app-primary: mat-palette($mat-teal, 800);
-$addapptable-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$addapptable-app-warn: mat-palette($mat-red);
-$addapptable-app-theme: mat-light-theme($addapptable-app-primary, $addapptable-app-accent, $addapptable-app-warn);
-$addapptable-theme-variables: (
+$app-primary: mat-palette($mat-teal, 800);
+$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
+$craftsjs-app-warn: mat-palette($mat-red);
+$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+$craftsjs-theme-variables: (
     text: white,
     transition-time: 250ms,
     border-radius: 5px
 );
 @include mat-core();
 body.theme-default {
-    @include angular-material-theme($addapptable-app-theme);
-    @include addapptable-menu($addapptable-app-theme, $addapptable-theme-variables);
+    @include angular-material-theme($craftsjs-app-theme);
+    @include menu($craftsjs-app-theme, $craftsjs-theme-variables);
 }
 ```
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { MenuService } from '../../services/menu.service';
 
 @Component({
-    selector: 'craftsjs-menu-header',
+    selector: 'menu-header',
     templateUrl: './menu-header.component.html',
     host: {
         class: 'menu-tools d-flex justify-content-between align-items-center col-12'

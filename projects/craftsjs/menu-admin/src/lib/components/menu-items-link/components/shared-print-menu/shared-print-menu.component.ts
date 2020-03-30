@@ -1,13 +1,13 @@
 import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ReponsiveService } from '@addapptables/responsive';
+import { ResponsiveService } from '@craftsjs/core';
 import { MenuModel } from '../../../../models/menu.model';
 import { MenuOpened } from '../../../../actions/menu.actions';
 import { MenuService } from '../../../../services/menu.service';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'addapptable-shared-print-menu',
+    selector: 'shared-print-menu',
     templateUrl: './shared-print-menu.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./shared-print-menu.component.scss'],
@@ -26,8 +26,8 @@ export class SharedPrintMenuComponent implements OnInit {
     collapse$: Observable<boolean>;
 
     constructor(private readonly _store: Store<any>,
-        private readonly reponsiveService: ReponsiveService,
-        private readonly _menuService: MenuService) { }
+                private readonly responsiveService: ResponsiveService,
+                private readonly _menuService: MenuService) { }
 
 
     ngOnInit(): void {
@@ -35,7 +35,7 @@ export class SharedPrintMenuComponent implements OnInit {
     }
 
     openCloseMenu() {
-        const isMobile = this.reponsiveService.isMobileSubject.getValue();
+        const isMobile = this.responsiveService.isMobileSubject.getValue();
         isMobile && this._store.dispatch(new MenuOpened());
     }
 }
