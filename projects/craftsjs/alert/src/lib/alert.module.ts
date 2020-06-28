@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TranslateModule } from '@ngx-translate/core';
+import { L10nTranslationModule } from 'angular-l10n';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@craftsjs/core';
 import { DialogAlertComponent } from './components/dialog-alert/dialog-alert.component';
@@ -18,7 +18,7 @@ import { AlertService } from './services/alert.service';
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    L10nTranslationModule,
     MatButtonModule,
     CoreModule,
     MatDialogModule

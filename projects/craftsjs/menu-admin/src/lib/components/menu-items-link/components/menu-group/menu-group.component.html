@@ -4,7 +4,7 @@
             <i *ngIf="menuGroup.class" class="menu-items-button-icon {{menuGroup.class}}" matSuffix>{{menuGroup.value}}</i>
             <span class="menu-children-text" *ngIf="!menuGroup.class">{{menuGroup.value}}</span>
             <span [class]="!(collapse$ | async)? 'menu-items-title': 'menu-mini-items-title'">
-                {{menuGroup.title | translate}}
+                {{menuGroup.title | translateAsync}}
             </span>
         </div>
         <div [class]="!(collapse$ | async)? 'd-flex': 'd-flex menu-mini-hide'">

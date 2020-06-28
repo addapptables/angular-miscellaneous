@@ -1047,11 +1047,6 @@
     rxjs "6.5.4"
     webpack-sources "1.4.3"
 
-"@ngx-translate/core@^12.1.2":
-  version "12.1.2"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-12.1.2.tgz#0c6f24249953a79cfc2d581b2cd1b5d6d338d9db"
-  integrity sha512-ZudJsqIxTKlLmPoqK8gJY3UpMGujR0Xm7HfXL6AR79yGRS23QqpjAhMfx4v5qUCcHMmQ9/78bW8QJLfp31c7vQ==
-
 "@npmcli/ci-detect@^1.0.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@npmcli/ci-detect/-/ci-detect-1.2.0.tgz#0df142a1ac3bba6cbf2e9da1a6994cd898e32c95"
@@ -1587,6 +1582,11 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
+
+angular-l10n@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/angular-l10n/-/angular-l10n-9.1.0.tgz#5b9129a3abc6691b1233a193392a5a202c49eb90"
+  integrity sha512-56fZfy8eCuCj+QHo2ejhL1AkkWM8tAFerosEovksPQb0EacJi6CPDEkEdckXa7ryMcit1DkPycETTmGvI7I5WA==
 
 ansi-align@^3.0.0:
   version "3.0.0"

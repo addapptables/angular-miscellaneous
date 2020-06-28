@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@ngx-translate/core": "ngx-translate-core",
+      "angular-l10n": "angular-l10n",
       "@craftsjs/core": "crafts-core"
     }
   }

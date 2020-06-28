@@ -5,8 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 import { PerfectScrollbarModule } from '@craftsjs/perfect-scrollbar';
+import { L10nTranslationModule } from 'angular-l10n';
 import { MenuComponent } from './menu.component';
 import { MenuHeaderComponent } from './components/menu-header/menu-header.component';
 import { MenuItemsLinkComponent } from './components/menu-items-link/menu-items-link.component';
@@ -20,7 +20,7 @@ import { ButtonMobileComponent } from './components/button-mobile/button-mobile.
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    L10nTranslationModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
