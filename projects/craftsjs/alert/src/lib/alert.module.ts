@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { L10nTranslationModule } from 'angular-l10n';
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@craftsjs/core';
 import { DialogAlertComponent } from './components/dialog-alert/dialog-alert.component';
@@ -18,7 +18,7 @@ import { AlertService } from './services/alert.service';
 @NgModule({
   imports: [
     CommonModule,
-    L10nTranslationModule,
+    TranslateModule,
     MatButtonModule,
     CoreModule,
     MatDialogModule
@@ -44,7 +44,7 @@ import { AlertService } from './services/alert.service';
   ]
 })
 export class AlertModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<AlertModule> {
     return {
       ngModule: AlertModule,
       providers: [

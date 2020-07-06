@@ -7,7 +7,7 @@
       "@craftsjs/core": "craftsjs-core",
       "@craftsjs/ngrx-action": "craftsjs-ngrx-action",
       "@craftsjs/perfect-scrollbar": "craftsjs-perfect-scrollbar",
-      "angular-l10n": "angular-l10n",
+      "@ngx-translate/core": "ngx-translate-core",
       "@ngrx/store": "ngrx-store"
     }
   }
