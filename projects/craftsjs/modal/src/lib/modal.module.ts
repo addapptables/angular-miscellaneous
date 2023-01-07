@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ModalComponent } from './modal.component';
 import { ModalHeaderDirective } from './directives/modal-header.directive';
 import { ModalFooterDirective } from './directives/modal-footer.directive';
