@@ -13,7 +13,7 @@ import * as ResponseActions from '../actions/responsive.actions';
 })
 export class ResponsiveStore {
 
-    readonly SMALL = 576;
+    readonly SMALL = 590;
     readonly MEDIUM = 768;
     readonly LARGE = 992;
     readonly EXTRA_LARGE = 1200;

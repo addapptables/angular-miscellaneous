@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertModel } from '../models/alert.model';
 import { AlertEnum } from '../models/alert-enum.model';
 import { DialogAlertComponent } from '../components/dialog-alert/dialog-alert.component';

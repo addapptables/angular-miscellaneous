@@ -1,6 +1,6 @@
 import { Injectable, Injector, Inject } from '@angular/core';
 import { NotifierPortalService } from './notifier-portal.service';
-import { PortalInjector, ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { NotifierComponent } from '../notifier.component';
 import { DOCUMENT } from '@angular/common';
 import { NotifierRef } from '../notifier-ref';
@@ -76,10 +76,13 @@ export class NotifierService {
   }
 
   private _createComponentPortal(data: any): ComponentPortal<NotifierComponent> {
-    const injectionTokens = new WeakMap<any, any>([
-      [ADDAPPTABLE_NOTIFIER_DATA, data]
-    ]);
-    const injector = new PortalInjector(this._injector, injectionTokens);
+    const injector =     Injector.create({
+      providers: [{
+        provide: ADDAPPTABLE_NOTIFIER_DATA,
+        useValue: data
+      }],
+      parent: this._injector
+    })
     return new ComponentPortal(NotifierComponent, null, injector);
   }
 }

@@ -8,6 +8,7 @@ Choose the version corresponding to your Angular version:
 
  Angular     | @craftsjs/perfect-scrollbar
  ----------- | -------------------
+ 15          | 5.x
  13          | 4.x
  12          | 3.x
  11          | 2.x

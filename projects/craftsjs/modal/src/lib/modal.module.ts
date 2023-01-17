@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal.component';
 import { ModalHeaderDirective } from './directives/modal-header.directive';
 import { ModalFooterDirective } from './directives/modal-footer.directive';
@@ -29,7 +29,7 @@ import { CRAFTSJS_MODAL_CONFIG } from './tokens';
     ModalFooterDirective
   ],
   providers: [
-    ModalService
+    ModalService,
   ]
 })
 export class ModalModule {
@@ -37,7 +37,8 @@ export class ModalModule {
     return {
       ngModule: ModalModule,
       providers: [
-        { provide: CRAFTSJS_MODAL_CONFIG, useValue: config }
+        { provide: CRAFTSJS_MODAL_CONFIG, useValue: config },
+        ModalService
       ]
     };
   }

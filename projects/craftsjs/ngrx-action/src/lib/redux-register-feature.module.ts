@@ -1,4 +1,4 @@
-import { NgModule, Optional, Inject, Injector, InjectFlags } from '@angular/core';
+import { NgModule, Optional, Inject, Injector } from '@angular/core';
 import { ReducerManager, combineReducers } from '@ngrx/store';
 import { FEATURE_STORE_TOKEN } from './redux-tokens';
 import { createReducer } from './factory';
@@ -19,7 +19,7 @@ export class ReduxRegisterFeatureModule {
                 for (const key in featureReducer.reducers) {
                     const klass = featureReducer.reducers[key];
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    const inst = parentInjector.get(klass, new klass(), InjectFlags.Default);
+                    const inst = parentInjector.get(klass, new klass(), { optional: false });
                     mapped[key] = createReducer(inst);
                 }
 

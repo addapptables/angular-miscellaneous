@@ -2,18 +2,51 @@
 @import './mixins';
 
 @mixin menu($theme, $variables) {
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         margin: 0;
     }
+
     $background: map-get($theme, background);
     $primary: map-get($theme, primary);
     $foreground: map-get($theme, foreground);
+
     .menu {
-        a {
-          text-decoration: none;
-          color: white;
-          display: flex;
+        
+        .mat-mdc-button {
+            color: inherit;
+            background: transparent;
+            box-sizing: border-box;
+            position: relative;
+            user-select: none;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            display: inline-block;
+            white-space: nowrap;
+            text-decoration: none;
+            vertical-align: baseline;
+            text-align: center;
+            margin: 0;
+            min-width: 64px;
+            line-height: 36px;
+            padding: 0 16px;
+            border-radius: 4px;
+            overflow: visible;
         }
+
+        a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+        }
+
         color: map-get($variables, text);
         width: 300px;
         background-color: mat.get-color-from-palette($primary, 1);
@@ -24,6 +57,7 @@
         @include transition();
         position: relative;
         min-height: 0;
+
         @include media-breakpoint-down('sm') {
             visibility: hidden;
             opacity: 0;
@@ -33,6 +67,7 @@
             transition: all 0.3s ease;
             height: 100%;
         }
+
         &-open {
             position: absolute;
             height: 100%;
@@ -40,48 +75,62 @@
             @include opacity(1);
             width: 300px;
         }
+
         &-mini {
             width: 93px;
             position: absolute;
             height: 100%;
-            &-active{
+
+            &-active {
                 margin-right: 93px;
             }
+
             &-items {
                 &-title {
                     opacity: 0;
                     @include transform-translate-x(-25px);
                     @include transition-opacity-transform(map-get($variables, transition-time), linear);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
-            &-user{
-                &-avatar{
+
+            &-user {
+                &-avatar {
                     @include transition();
                     width: 60px !important;
                 }
             }
+
             &-hide {
                 opacity: 0;
                 display: none;
                 @include transition-opacity-transform(map-get($variables, transition-time), linear);
             }
-            &:hover .menu-mini-items-title{
+
+            &:hover .menu-mini-items-title {
                 @include opacity(1);
             }
-            &:hover .menu-mini-hide{
+
+            &:hover .menu-mini-hide {
                 display: inherit;
                 @include opacity(1);
             }
-            &:hover .menu-mini-user-initials{
+
+            &:hover .menu-mini-user-initials {
                 opacity: 0;
             }
-            &:hover .menu-mini-user-avatar{
+
+            &:hover .menu-mini-user-avatar {
                 width: 76px !important;
             }
+
             &:hover .menu-mini-user-initials {
                 display: none;
             }
         }
+
         &:before {
             background: url(/assets/images/backgrounds/sidebar.jpg) no-repeat;
             opacity: .2;
@@ -93,16 +142,19 @@
             top: 0;
             left: 0;
         }
-        &-hover{
-            &:hover{
+
+        &-hover {
+            &:hover {
                 width: 300px !important;
             }
         }
+
         &-tools {
             min-height: 64px;
             max-height: 64px;
             height: 64px;
             padding: 12px 12px 12px 20px;
+
             &-logo {
                 width: 36px;
                 vertical-align: middle;
@@ -110,16 +162,19 @@
                 margin-right: 7px;
             }
         }
-        &-user{
+
+        &-user {
             position: relative;
             width: 100%;
             height: 136px;
             min-height: 136px;
             max-height: 136px;
             padding: 24px 0 64px;
-            &-title{
+
+            &-title {
                 margin-bottom: 10px;
             }
+
             &-avatar {
                 position: absolute;
                 top: 92px;
@@ -129,62 +184,80 @@
                 transform: translateX(-50%);
                 left: 50%;
             }
+
             &-subtitle {
                 display: grid;
                 padding: 0 1em;
             }
         }
+
         &-scroll-container {
             max-width: 100%;
             position: relative;
             flex: 1;
         }
+
         &-items {
             margin-top: 43px;
             max-width: 100%;
             flex: 1;
-            &>ul{
+
+            &>ul {
                 list-style: none;
                 margin: 0;
                 padding: 0.6em;
-                &>li{
+
+                &>li {
                     margin-bottom: 10px;
                     padding: 0.5em;
                     border-radius: map-get($variables, border-radius);
-                    &>button{
+
+                    &>button {
                         width: 100%;
                         text-align: start;
                     }
                 }
-                & > :last-child {
+
+                &> :last-child {
                     margin-bottom: 0;
                 }
             }
+
             &-title {
                 opacity: 1;
                 @include transform-translate-x(0);
                 @include transition-opacity-transform(map-get($variables, transition-time), linear);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
-            &-button{
-                &-active{
+
+            &-button {
+                &-active {
                     @include transition();
                     background-color: mat.get-color-from-palette($background, raised-button);
                     color: mat.get-color-from-palette($foreground, icon) !important;
                     @include mat.elevation(1);
+
                     &>button {
-                        &>.mat-button-focus-overlay{
+
+                        /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+                        &>.mat-mdc-button-focus-overlay {
                             opacity: 0 !important;
                         }
                     }
                 }
-                &-icon{
+
+                &-icon {
                     margin-right: 11px;
                 }
             }
         }
+
         &-title {
             max-width: inherit;
         }
+
         &-overlay {
             display: inline-block;
             position: fixed;
@@ -196,5 +269,6 @@
             z-index: 10;
         }
     }
+
     @include menu-children();
 }
