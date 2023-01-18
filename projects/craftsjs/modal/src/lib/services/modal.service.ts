@@ -20,10 +20,10 @@ export class ModalService {
 
   show<T = any>(component: ComponentType<T> | TemplateRef<T>, data?: ModalData) {
     return this._dialog.open(component, {
-      data: data.data,
+      data: data?.data,
       width: this.modalConfig.width,
-      injector: data.injector,
-      viewContainerRef: data.viewContainerRef
+      injector: data?.injector,
+      viewContainerRef: data?.viewContainerRef
     });
   }
 

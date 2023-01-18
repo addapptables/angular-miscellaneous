@@ -1,6 +1,6 @@
 {
   "name": "@craftsjs/notifier",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "author": "craftsjs",
   "description": "Material menu library for angular",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "@angular/core": ">=15.0.0 < 16.0.0",
     "@angular/cdk": ">=15.0.0 < 16.0.0",
     "@angular/animations": ">=15.0.0 < 16.0.0",
-    "@craftsjs/core": ">=4.0.0 < 5.0.0"
+    "@craftsjs/core": ">=5.0.0 < 6.0.0"
   },
   "repository": {
     "type": "git",
