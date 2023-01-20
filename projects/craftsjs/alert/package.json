@@ -1,6 +1,6 @@
 {
   "name": "@craftsjs/alert",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "author": "craftsjs",
   "description": "Material alert library for angular",
   "license": "MIT",

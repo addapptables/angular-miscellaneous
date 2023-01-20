@@ -272,3 +272,22 @@
 
     @include menu-children();
 }
+
+@mixin menu-color($theme) {
+    $background: map-get($theme, background);
+    $primary: map-get($theme, primary);
+    $foreground: map-get($theme, foreground);
+
+    .menu {
+        background-color: mat.get-color-from-palette($primary, 1);
+        &-button {
+            &-active {
+                background-color: mat.get-color-from-palette($background, raised-button);
+                color: mat.get-color-from-palette($foreground, icon) !important;
+            }
+        }
+        &-overlay {
+            background: mat.get-color-from-palette($background, disabled-button);
+        }
+    }
+}

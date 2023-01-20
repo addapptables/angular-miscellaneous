@@ -35,12 +35,12 @@
         width: 100%;
         margin: $card-padding;
         box-shadow: $card-box-shadow;
-        background: mat.get-color-from-palette($background, card);
+        background: mat.get-color-from-palette($background, 'card');
         margin-top: 32px;
         &-header {
             &-oval {
                 background-color: $background-color-header;
-                color: map-get($variables, text);;
+                color: map-get($variables, text);
                 padding: 20px 15px;
                 margin: $card-header-margin;
                 border-radius: map-get($variables, border-radius);
@@ -64,6 +64,10 @@
                     margin: inherit;
                 }
             }
+            &-subtitle {
+                display: flex;
+                align-items: center;
+            }
         }
         &-body {
             display: block;
@@ -81,8 +85,35 @@
             border-top-width: 1px;
             border-top-style: dashed;
             margin-top: 10px;
-            color: #cac8c8;
+            color: mat.get-color-from-palette($foreground, 'divider');
         }
     }
     @include addapptable-card-header($variables);
+}
+
+@mixin card-color($theme) {
+
+    $accent: map-get($theme, accent);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    $background-color-header: mat.get-color-from-palette($accent);
+    $card-header-box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px mat.get-color-from-palette($accent);
+    
+    .card {
+        background: mat.get-color-from-palette($background, 'card');
+        &-header {
+            &-oval {
+                background-color: $background-color-header;
+                color: mat.get-color-from-palette($foreground, 'text');
+                box-shadow: $card-header-box-shadow;
+            }
+        }
+        &-divider {
+            color: mat.get-color-from-palette($foreground, 'divider');
+        }
+        &-footer {
+            border-top: 1px solid mat.get-color-from-palette($foreground, divider);
+        }
+    }
 }

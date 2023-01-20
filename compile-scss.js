@@ -26,6 +26,11 @@ const libraries = [{
   source: './projects/craftsjs/notifier/src/lib',
   name: '_craftsjs-notifier.theme.scss',
   dest: './dist/craftsjs/notifier/'
+},
+{
+  source: './projects/craftsjs/modal/src/lib',
+  name: '_craftsjs-modal.theme.scss',
+  dest: './dist/craftsjs/modal/'
 }];
 
 function bootstrap() {
