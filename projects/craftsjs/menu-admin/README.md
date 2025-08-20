@@ -13,11 +13,11 @@ Choose the version corresponding to your Angular version:
 
  | Angular | @craftsjs/menu-admin |
  | ------- | -------------------- |
+ | 18      | 6.x                  |
  | 15      | 5.x                  |
  | 13      | 4.x                  |
  | 12      | 3.x                  |
  | 11      | 2.x                  |
- | 10      | 1.x                  |
 
 ```
 npm i @craftsjs/menu-admin --S
@@ -38,7 +38,6 @@ perfect-scrollbar
 
 ## Configuration
 
-- First, you have to configure the library @ngx-translate/core to have the translation into the menu
 
 The library is configured as follows:
 
@@ -65,9 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
 export class AppModule { }
 ```
 
-- To obtain more information about @ngx-translate/core view [link](https://github.com/ngx-translate/core)
 
-- craftsjs menu uses the library ngrx as a base, you have to set this library in your AppModule as follows:
 
 ```typescript
 import { ResponsiveModule } from '@craftsjs/responsive';
@@ -81,11 +78,9 @@ import { ResponsiveModule } from '@craftsjs/responsive';
 export class AppModule { }
 ```
 
-- To obtain more information about ngrx view [link](https://ngrx.io/guide/store)
 
 ## How to use?
 
-- First, you have to create a module and import MenuModule as follows:
 
 ```typescript
 
@@ -152,7 +147,6 @@ export class MenuComponent {
 }
 ```
 
-- So now you can use the variables into the html as follows
 
 ```html
 <craftsjs-menu>
@@ -165,13 +159,11 @@ export class MenuComponent {
 </craftsjs-menu>
 ```
 
-- In cellphone mode you can use the following component to collapse the menu
 
 ```html
     <button-mobile></button-mobile>
 ```
 
-- Finally, it is important to import the styles to the application
 
 ```scss
 @import '~@craftsjs/core/craftsjs-grid.theme';
@@ -194,7 +186,6 @@ body.theme-default {
 }
 ```
 
-- Do not forget to put the theme-default class on the html body
 
 ```html
 <body class="theme-default"></body>
@@ -206,4 +197,8 @@ Background menu sidebar
 
 ```
 /assets/images/backgrounds/sidebar.jpg
+
+## Compatibility
+
+Version 6: Compatible with Angular v18.
 ```

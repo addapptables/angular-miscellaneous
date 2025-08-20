@@ -13,11 +13,11 @@ Choose the version corresponding to your Angular version:
 
  | Angular | @craftsjs/alert |
  | ------- | --------------- |
+ | 18      | 6.x             |
  | 15      | 5.x             |
  | 13      | 4.x             |
  | 12      | 3.x             |
  | 11      | 2.x             |
- | 10      | 1.x             |
 
 ```
 npm i @craftsjs/alert --S
@@ -43,6 +43,7 @@ The library is configured as follows:
 ```typescript
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+Version 6: Compatible with Angular v18.
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');

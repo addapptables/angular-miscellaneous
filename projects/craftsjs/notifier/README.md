@@ -13,13 +13,17 @@ Choose the version corresponding to your Angular version:
 
  Angular     | @craftsjs/alert
  ----------- | -------------------
+ 18          | 6.x
  15          | 5.x
  13          | 4.x
  12          | 3.x
  11          | 2.x
- 10          | 1.x
 
+npm i @craftsjs/notifier --S
 ```
+## Compatibility
+
+Version 6: Compatible with Angular v18.
 npm i @craftsjs/notifier --S
 ```
 

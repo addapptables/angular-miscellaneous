@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { selectAllScreen } from '@craftsjs/core';
 import { map, distinctUntilChanged, shareReplay } from 'rxjs/operators';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import * as MenuActions from '../actions/menu.actions';
 import { selectActiveMenuMini, selectMenuOpen } from '../selectors/menu.selector';
 
@@ -18,6 +18,10 @@ export class MenuService {
     collapseMenu$: Observable<boolean>;
 
     open$: Observable<boolean>;
+    /** Emits the id of the currently opened menu-group (or null when none) */
+    openedGroup$: Observable<string | null>;
+
+    private _openedGroupSub = new BehaviorSubject<string | null>(null);
 
     constructor(private readonly _store: Store<any>) {
     }
@@ -28,6 +32,7 @@ export class MenuService {
         );
         this.initMenuMini();
         this.initScreen();
+        this.openedGroup$ = this._openedGroupSub.asObservable();
         this.collapseMenu$ = combineLatest([
             this.activeMenuMini$,
             this.activeMobile$
@@ -36,6 +41,11 @@ export class MenuService {
             distinctUntilChanged(),
             shareReplay()
         );
+    }
+
+    /** Open a menu-group by id. Pass null to close all groups. */
+    openGroup(id: string | null) {
+        this._openedGroupSub.next(id);
     }
 
     private initMenuMini() {
