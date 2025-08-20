@@ -2,6 +2,10 @@
 
 Note: This library is an improvement on the ngrx-actions library.
 
+## Compatibility
+
+Version 6: Compatible with Angular v18.
+
 Actions/reducer utility for NGRX. It provides a handful of functions to make NGRX/Redux more Angular-tastic.
 
 - `@Store(MyInitialState)`: Decorator for default state of a store.

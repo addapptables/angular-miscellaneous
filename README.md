@@ -2,6 +2,10 @@
 
 Craftsjs miscellaneous is a set of software libraries for Angular
 
+## Compatibility
+
+Version 6: Compatible with Angular v18.
+
 ## Getting Started
 
 For Alert see the following [link](https://github.com/addapptables/angular-miscellaneous/tree/master/projects/craftsjs/alert)
