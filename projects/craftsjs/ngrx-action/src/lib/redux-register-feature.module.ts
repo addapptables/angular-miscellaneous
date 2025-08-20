@@ -5,7 +5,7 @@ import { createReducer } from './factory';
 
 @NgModule()
 export class ReduxRegisterFeatureModule {
-    constructor(@Optional() @Inject(FEATURE_STORE_TOKEN) featureReducers: any, reducerFactory: ReducerManager, parentInjector: Injector
+    constructor(@Optional() @Inject(FEATURE_STORE_TOKEN) featureReducers: any, @Optional() reducerFactory: ReducerManager, parentInjector: Injector
     ) {
         if (featureReducers) {
             featureReducers.forEach(featureReducer => {

@@ -33,7 +33,7 @@
         }
 
         &-title {
-            color: mat.get-color-from-palette($foreground, 'text');
+            color: map-get($foreground, 'text');
             font-weight: 600;
             text-transform: none;
             position: relative;
@@ -67,7 +67,7 @@
             margin: 0;
             padding: 0 10px;
             font-weight: 400;
-            color: mat.get-color-from-palette($foreground, 'text');
+            color: map-get($foreground, 'text');
             overflow-wrap: break-word;
             box-sizing: border-box;
             width: 100%;
@@ -114,16 +114,16 @@
 
 @mixin alert-color($theme) {
     $foreground: map-get($theme, foreground);
-    color: mat.get-color-from-palette($foreground, 'text');
+    color: map-get($foreground, 'text');
 
     .alert {
         // change color title
         &-title {
-            color: mat.get-color-from-palette($foreground, 'text');
+            color: map-get($foreground, 'text');
         }
         // change color text
         &-text {
-            color: mat.get-color-from-palette($foreground, 'text');
+            color: map-get($foreground, 'text');
         }
     }
 }

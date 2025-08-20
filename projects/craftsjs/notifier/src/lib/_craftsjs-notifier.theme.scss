@@ -31,17 +31,17 @@
             }
         }
         &-primary {
-            background-color: mat.get-color-from-palette($primary, 0.9) !important;
-            color: mat.get-color-from-palette($primary, 0.9) !important;
+            background-color: map-get($primary, 900) !important;
+                color: map-get($primary, 900) !important;
             & > i {
-                color: mat.get-color-from-palette($primary, 0.9) !important;
+                color: map-get($primary, 900) !important;
             }
         }
         &-accent {
-            background-color: mat.get-color-from-palette($accent, 0.9) !important;
-            color: mat.get-color-from-palette($accent, 0.9) !important;
+            background-color: map-get($accent, 900) !important;
+                color: map-get($accent, 900) !important;
             & > i {
-                color: mat.get-color-from-palette($accent, 0.9) !important;
+                color: map-get($accent, 900) !important;
             }
         }
     }
