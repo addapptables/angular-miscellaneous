@@ -49,7 +49,7 @@
 
         color: map-get($variables, text);
         width: 300px;
-        background-color: mat.get-color-from-palette($primary, 1);
+        background-color: map-get($primary, 100);
         @include mat.elevation(1);
         z-index: 2;
         flex: 1 1 100%;
@@ -235,8 +235,8 @@
             &-button {
                 &-active {
                     @include transition();
-                    background-color: mat.get-color-from-palette($background, raised-button);
-                    color: mat.get-color-from-palette($foreground, icon) !important;
+                    background-color: map-get($background, 'raised-button');
+                        color: map-get($foreground, 'icon') !important;
                     @include mat.elevation(1);
 
                     &>button {
@@ -265,7 +265,7 @@
             height: 100%;
             left: 0;
             top: 0;
-            background: mat.get-color-from-palette($background, disabled-button);
+            background: map-get($background, 'disabled-button');
             z-index: 10;
         }
     }
@@ -279,15 +279,15 @@
     $foreground: map-get($theme, foreground);
 
     .menu {
-        background-color: mat.get-color-from-palette($primary, 1);
+    background-color: map-get($primary, 100);
         &-button {
             &-active {
-                background-color: mat.get-color-from-palette($background, raised-button);
-                color: mat.get-color-from-palette($foreground, icon) !important;
+                background-color: map-get($background, 'raised-button');
+                    color: map-get($foreground, 'icon') !important;
             }
         }
         &-overlay {
-            background: mat.get-color-from-palette($background, disabled-button);
+            background: map-get($background, 'disabled-button');
         }
     }
 }

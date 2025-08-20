@@ -1,16 +1,17 @@
 {
   "name": "@craftsjs/notifier",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "author": "craftsjs",
   "description": "Material menu library for angular",
   "license": "MIT",
   "homepage": "https://github.com/addapptables/angular-miscellaneous",
   "peerDependencies": {
-    "@angular/common": ">=15.0.0 < 16.0.0",
-    "@angular/core": ">=15.0.0 < 16.0.0",
-    "@angular/cdk": ">=15.0.0 < 16.0.0",
-    "@angular/animations": ">=15.0.0 < 16.0.0",
-    "@craftsjs/core": ">=5.0.0 < 6.0.0"
+  "@angular/common": ">=18.0.0 < 19.0.0",
+  "@angular/core": ">=18.0.0 < 19.0.0",
+  "@angular/cdk": ">=18.0.0 < 19.0.0",
+  "@angular/animations": ">=18.0.0 < 19.0.0",
+  "@craftsjs/core": ">=6.0.0 < 7.0.0",
+  "rxjs": "7.8.1"
   },
   "repository": {
     "type": "git",

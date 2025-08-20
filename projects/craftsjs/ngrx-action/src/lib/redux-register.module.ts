@@ -4,6 +4,17 @@ import { STORE_TOKEN, FEATURE_STORE_TOKEN } from './redux-tokens';
 import { ReduxRegisterFeatureModule } from './redux-register-feature.module';
 import { StoreModule } from '@ngrx/store';
 
+/**
+ * ReduxRegisterModule
+ *
+ * Compatibility: Angular 18, NgRx compatible versions.
+ * This module provides helpers to register root and feature store reducers from decorated classes.
+ * Usage:
+ *   - In the application root import `StoreModule.forRoot({})` from `@ngrx/store`.
+ *   - Then import `ReduxRegisterModule.forRoot(...)` to register decorated reducer classes.
+ *
+ * Note: The library tolerates absence of Store by making internal ReducerManager injections optional.
+ */
 @NgModule({
     imports: [StoreModule]
 })

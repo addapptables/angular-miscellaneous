@@ -3,9 +3,16 @@ import { ReducerManager } from '@ngrx/store';
 import { STORE_TOKEN } from './redux-tokens';
 import { createReducer } from './factory';
 
+/**
+ * ReduxRegisterRootModule
+ *
+ * Provides root-level registration of reducer classes decorated with @Store.
+ * Compatibility: Angular 18, NgRx reducers.
+ * Ensure the host application imports `StoreModule.forRoot(...)` to provide ReducerManager when using this module.
+ */
 @NgModule()
 export class ReduxRegisterRootModule {
-    constructor(@Optional() @Inject(STORE_TOKEN) reducers: any, reducerFactory: ReducerManager, parentInjector: Injector) {
+    constructor(@Optional() @Inject(STORE_TOKEN) reducers: any, @Optional() reducerFactory: ReducerManager, parentInjector: Injector) {
         if (reducers) {
             // tslint:disable-next-line:forin
             for (const key in reducers) {

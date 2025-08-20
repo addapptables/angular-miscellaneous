@@ -9,7 +9,7 @@
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
-    background-color: mat.get-color-from-palette($background, 'card');
+  background-color: map-get($background, 'card');
     background-clip: padding-box;
     outline: 0;
 
@@ -18,7 +18,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1rem;
-      border-bottom: 1px solid mat.get-color-from-palette($foreground, 'divider');
+  border-bottom: 1px solid map-get($foreground, 'divider');
       border-top-left-radius: .3rem;
       border-top-right-radius: .3rem;
     }
@@ -39,7 +39,7 @@
       align-items: center;
       justify-content: flex-end;
       padding: 1rem;
-      border-top: 1px solid mat.get-color-from-palette($foreground, 'divider');
+  border-top: 1px solid map-get($foreground, 'divider');
 
       &>button {
         margin-right: 10px;
@@ -58,14 +58,14 @@
   $foreground: map-get($theme, foreground);
 
   .modal {
-    background-color: mat.get-color-from-palette($background, 'card');
+  background-color: map-get($background, 'card');
 
     &-header {
-      border-bottom: 1px solid mat.get-color-from-palette($foreground, 'divider');
+  border-bottom: 1px solid map-get($foreground, 'divider');
     }
 
     &-footer {
-      border-top: 1px solid mat.get-color-from-palette($foreground, 'divider');
+  border-top: 1px solid map-get($foreground, 'divider');
     }
   }
 }
