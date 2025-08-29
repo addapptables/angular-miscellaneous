@@ -1,5 +1,4 @@
 import { NotifierComponent } from './notifier.component';
-import { DomPortalOutlet } from '@angular/cdk/portal';
 import { Subject, Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 
@@ -7,22 +6,14 @@ export class NotifierRef {
 
     private readonly _component: NotifierComponent;
 
-    private readonly _portal: DomPortalOutlet;
-
-    private readonly _document: Document;
+  private readonly _destroy: () => void;
 
     private readonly _afterClose = new Subject<string>();
 
-    constructor(
-        component: NotifierComponent,
-        portal: DomPortalOutlet,
-        document: Document,
-        id: string
-    ) {
-        this._component = component;
-        this._portal = portal;
+  constructor(component: NotifierComponent, id: string, destroy: () => void) {
+      this._component = component;
         this._component._id = id;
-        this._document = document;
+      this._destroy = destroy;
         this._component._close.subscribe(this.close.bind(this));
     }
 
@@ -52,9 +43,7 @@ export class NotifierRef {
     }
 
     private _destroyPortal() {
-        const componentContainer = this._document.getElementById(this._component._id);
-        this._portal.detach();
-        componentContainer && componentContainer.parentNode.removeChild(componentContainer);
+      this._destroy();
     }
 
 }

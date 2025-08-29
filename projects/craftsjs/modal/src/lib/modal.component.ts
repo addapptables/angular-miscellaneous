@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
+
 @Component({
   selector: 'craftsjs-modal',
   templateUrl: './modal.component.html',
@@ -8,6 +9,8 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'modal'
-  }
+  },
+  standalone: true,
+  imports: []
 })
 export class ModalComponent { }

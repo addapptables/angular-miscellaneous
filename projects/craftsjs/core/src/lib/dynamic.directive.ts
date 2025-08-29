@@ -1,7 +1,8 @@
 import { Directive, ViewContainerRef, Input } from '@angular/core';
 
 @Directive({
-    selector: '[craftsjsDynamic]'
+    selector: '[craftsjsDynamic]',
+    standalone: true
 })
 export class DynamicDirective {
 

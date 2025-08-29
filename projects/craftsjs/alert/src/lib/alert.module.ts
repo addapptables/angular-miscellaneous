@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { CoreModule } from '@craftsjs/core';
 import { DialogAlertComponent } from './components/dialog-alert/dialog-alert.component';
 import { AlertSuccessComponent } from './components/dialog-alert/components/alert-success/alert-success.component';
 import { AlertInfoComponent } from './components/dialog-alert/components/alert-info/alert-info.component';
@@ -20,18 +19,17 @@ import { AlertService } from './services/alert.service';
         CommonModule,
         TranslateModule,
         MatButtonModule,
-        CoreModule,
-        MatDialogModule
+    MatDialogModule,
+    // standalone components used by consumers or inside the dialog
+    DialogAlertComponent,
+    AlertSuccessComponent,
+    AlertInfoComponent,
+    WarningComponent,
+    ErrorComponent,
+    AlertOkButtonComponent,
+    AlertCancelButtonComponent
     ],
-    declarations: [
-        DialogAlertComponent,
-        AlertSuccessComponent,
-        AlertInfoComponent,
-        WarningComponent,
-        ErrorComponent,
-        AlertOkButtonComponent,
-        AlertCancelButtonComponent
-    ],
+  declarations: [],
     exports: [
         DialogAlertComponent
     ]

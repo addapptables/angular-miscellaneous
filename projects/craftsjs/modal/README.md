@@ -21,6 +21,10 @@ Choose the version corresponding to your Angular version:
 npm i @craftsjs/modal --S
 ```
 
+## Compatibility
+
+Current version: 6.1.0 (Compatible with Angular v18)
+
 Install peer dependencies
 
 ```
@@ -34,7 +38,7 @@ perfect-scrollbar
 
 ## How to use
 
-- Import the module AlertModule into the AppModule
+- Import the module ModalModule into the AppModule
 
 ```typescript
 import { ModalModule } from '@craftsjs/modal';
@@ -42,6 +46,38 @@ import { ModalModule } from '@craftsjs/modal';
   imports: [ModalModule.forRoot({ width: '800px' })]
 })
 export class AppModule { }
+```
+
+- Standalone (Angular 15+ / 18): usa providers en vez de NgModule
+
+```typescript
+// main.ts
+import { bootstrapApplication, importProvidersFrom } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideCraftsjsModal } from '@craftsjs/modal';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAnimations(),
+    provideCraftsjsModal({ width: '800px' })
+  ]
+});
+```
+
+- Alternativa standalone compat (reutilizando NgModule):
+
+```typescript
+// main.ts
+import { bootstrapApplication, importProvidersFrom } from '@angular/platform-browser';
+import { ModalModule } from '@craftsjs/modal';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(ModalModule.forRoot({ width: '800px' }))
+  ]
+});
 ```
 
 - Create a component modal
@@ -76,9 +112,6 @@ export class FormModalComponent {
     //modal body
   </modal-body>
   <modal-footer>
-  ## Compatibility
-
-  Version 6: Compatible with Angular v18.
     <button type="submit" mat-raised-button color="accent">
       Save
     </button>

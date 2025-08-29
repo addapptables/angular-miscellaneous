@@ -1,4 +1,4 @@
-import { Injectable, ApplicationRef, Inject, Injector, ComponentFactoryResolver } from '@angular/core';
+import { Injectable, ApplicationRef, Inject, Injector, EnvironmentInjector, createComponent, ComponentRef, Type } from '@angular/core';
 import { NotifierContainerService } from './notifier-container.service';
 import { DOCUMENT } from '@angular/common';
 import { DomPortalOutlet } from '@angular/cdk/portal';
@@ -10,25 +10,49 @@ let nextUniqueId = 0;
 export class NotifierPortalService {
 
   private _appRef: ApplicationRef;
+  private _envInjector: EnvironmentInjector | null = null;
 
   constructor(
     private _notifierContainerService: NotifierContainerService,
     @Inject(DOCUMENT) private _document: any,
-    private _injector: Injector,
-    private _componentFactoryResolver: ComponentFactoryResolver
+    private _injector: Injector
   ) { }
 
-  create() {
+  attachComponent<T>(component: Type<T>, elementInjector?: Injector): { componentRef: ComponentRef<T>; id: string; destroy: () => void } {
     const pane = this._createPaneElement();
-    const portal = this._createPortalOutlet(pane);
-    return portal;
-  }
 
-  private _createPortalOutlet(pane: HTMLElement): DomPortalOutlet {
     if (!this._appRef) {
       this._appRef = this._injector.get<ApplicationRef>(ApplicationRef);
     }
-    return new DomPortalOutlet(pane, this._componentFactoryResolver, this._appRef, this._injector);
+    if (!this._envInjector) {
+      // Prefer ApplicationRef.injector (root injector) if available; otherwise current injector
+      const appInjector: any = (this._appRef as any).injector;
+      this._envInjector = appInjector?.get?.(EnvironmentInjector) ?? this._injector.get(EnvironmentInjector);
+    }
+
+    const componentRef = createComponent(component, {
+      environmentInjector: this._envInjector,
+      elementInjector: elementInjector ?? this._injector,
+      hostElement: pane,
+    });
+
+    this._appRef.attachView(componentRef.hostView);
+
+    const id = this.getLastUniqueId;
+    const destroy = () => {
+      try {
+        this._appRef.detachView(componentRef.hostView);
+      } catch {
+        // no-op
+      }
+      componentRef.destroy();
+      const el = this._document.getElementById(id);
+      if (el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    };
+
+    return { componentRef, id, destroy };
   }
 
   private _createPaneElement(): HTMLElement {

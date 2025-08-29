@@ -5,22 +5,22 @@ import { ModalComponent } from './modal.component';
 import { ModalHeaderDirective } from './directives/modal-header.directive';
 import { ModalFooterDirective } from './directives/modal-footer.directive';
 import { ModalBodyComponent } from './components/modal-body/modal-body.component';
-import { PerfectScrollbarModule } from '@craftsjs/perfect-scrollbar';
+import { PerfectScrollbarDirective } from '@craftsjs/perfect-scrollbar';
 import { ModalConfig } from './models/modal-config.model';
 import { ModalService } from './services/modal.service';
 import { CRAFTSJS_MODAL_CONFIG } from './tokens';
 
 @NgModule({
-  declarations: [
+  declarations: [],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    PerfectScrollbarDirective,
+  // standalone components/directives
     ModalComponent,
     ModalHeaderDirective,
     ModalFooterDirective,
     ModalBodyComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    PerfectScrollbarModule,
   ],
   exports: [
     ModalComponent,

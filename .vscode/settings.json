@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "[typescript]": { "editor.tabSize": 2, "editor.insertSpaces": true },
+  "[html]": { "editor.tabSize": 2, "editor.insertSpaces": true },
+  "[scss]": { "editor.tabSize": 2, "editor.insertSpaces": true },
+  "[json]": { "editor.tabSize": 2, "editor.insertSpaces": true }
+}

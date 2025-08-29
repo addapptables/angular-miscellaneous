@@ -1,10 +1,13 @@
+@use '@angular/material' as mat;
 @import './components/card-header/craftsjs-card-header.theme';
 
 @mixin card($theme, $variables) {
 
-    $accent: map-get($theme, accent);
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
+    // Extract Material color config from the provided $theme (M2)
+    $color-config: mat.m2-get-color-config($theme);
+    $accent: map-get($color-config, accent);
+    $background: map-get($color-config, background);
+    $foreground: map-get($color-config, foreground);
 
     //card
     $card-padding: 12px 0;
@@ -17,9 +20,10 @@
     $card-header-margin: -20px 15px 0 16px;
     $card-header-padding: 20px;
     $card-title-font-weight: 500;
-    $card-header-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px map-get($accent, 'default');
+    $accent-hue: default;
+    $card-header-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px mat.m2-get-color-from-palette($accent, $accent-hue);
     $card-header-icon-margin-right: 10px;
-    $background-color-header: map-get($accent, 'default');
+    $background-color-header: mat.m2-get-color-from-palette($accent, $accent-hue);
 
     // body
     $card-body-padding: 12px 20px 20px;
@@ -40,7 +44,7 @@
         &-header {
             &-oval {
                 background-color: $background-color-header;
-                color: map-get($variables, text);
+                color: mat.m2-get-color-from-palette($accent, default-contrast);
                 padding: 20px 15px;
                 margin: $card-header-margin;
                 border-radius: map-get($variables, border-radius);
@@ -93,19 +97,22 @@
 
 @mixin card-color($theme) {
 
-    $accent: map-get($theme, accent);
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
+    // Extract Material color config from the provided $theme (M2)
+    $color-config: mat.m2-get-color-config($theme);
+    $accent: map-get($color-config, accent);
+    $background: map-get($color-config, background);
+    $foreground: map-get($color-config, foreground);
 
-    $background-color-header: map-get($accent, 'default');
-        $card-header-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px map-get($accent, 'default');
+    $accent-hue: default;
+    $background-color-header: mat.m2-get-color-from-palette($accent, $accent-hue);
+        $card-header-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px mat.m2-get-color-from-palette($accent, $accent-hue);
     
     .card {
     background: map-get($background, 'card');
         &-header {
             &-oval {
                 background-color: $background-color-header;
-                color: map-get($foreground, 'text');
+                color: var(--mat-sys-on-primary-container);
                 box-shadow: $card-header-box-shadow;
             }
         }

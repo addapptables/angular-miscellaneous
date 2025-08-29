@@ -8,8 +8,8 @@ describe('CardHeaderLinearComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardHeaderLinearComponent ]
-    })
+    imports: [CardHeaderLinearComponent]
+})
     .compileComponents();
   }));
 

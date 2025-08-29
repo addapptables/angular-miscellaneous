@@ -1,7 +1,10 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 import { MenuModel } from '../../../../models/menu.model';
 import { Observable } from 'rxjs';
 import { MenuService } from '../../../../services/menu.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'menu-single',
@@ -11,6 +14,8 @@ import { MenuService } from '../../../../services/menu.service';
         class: 'd-flex'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatButton, TranslateModule, AsyncPipe]
 })
 export class MenuSingleComponent implements OnInit {
     @Input()

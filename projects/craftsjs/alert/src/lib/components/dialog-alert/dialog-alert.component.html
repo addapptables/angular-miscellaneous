@@ -1,20 +1,30 @@
 <ng-template craftsjsDynamic name="alert-icon"></ng-template>
-<div *ngIf="data?.title" class="alert-title">
+@if (data?.title) {
+  <div class="alert-title">
     <span>
-        {{data.title | translate}}
+      {{data.title | translate}}
     </span>
-</div>
-<div *ngIf="data?.text" class="alert-text">
+  </div>
+}
+@if (data?.text) {
+  <div class="alert-text">
     <span>
-        {{data.text | translate}}
+      {{data.text | translate}}
     </span>
-</div>
+  </div>
+}
 <ng-template craftsjsDynamic name="alert-body"></ng-template>
-<div class="alert-footer" *ngIf="!data?.hiddenButtons">
-    <alert-ok-button *ngIf="!data?.customButtonComponent" (click)="buttonClick('ok')">
-    </alert-ok-button>
-    <alert-cancel-button *ngIf="!data?.customButtonComponent && data?.showCancelButton"
+@if (!data?.hiddenButtons) {
+  <div class="alert-footer">
+    @if (!data?.customButtonComponent) {
+      <alert-ok-button (click)="buttonClick('ok')">
+      </alert-ok-button>
+    }
+    @if (!data?.customButtonComponent && data?.showCancelButton) {
+      <alert-cancel-button
         (click)="buttonClick('cancel')">
-    </alert-cancel-button>
-</div>
+      </alert-cancel-button>
+    }
+  </div>
+}
 <ng-template craftsjsDynamic name="alert-buttons"></ng-template>

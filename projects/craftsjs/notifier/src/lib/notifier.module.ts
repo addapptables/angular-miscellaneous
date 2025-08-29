@@ -13,11 +13,11 @@ import { BottomLeftStrategy } from './strategies/bottom-left.strategy';
 import { CoreModule } from '@craftsjs/core';
 
 @NgModule({
-    declarations: [NotifierComponent],
-    imports: [
-        CommonModule,
-        CoreModule
-    ],
+  declarations: [],
+  imports: [
+    // import the standalone component
+    NotifierComponent
+  ],
     providers: [
         NotifierService,
         NotifierPortalService,
@@ -25,7 +25,8 @@ import { CoreModule } from '@craftsjs/core';
         TopRightStrategy,
         TopLeftStrategy,
         BottomLeftStrategy
-    ]
+  ],
+  exports: [NotifierComponent]
 })
 export class NotifierModule {
   static forRoot(config: NotifierConfiguration = {

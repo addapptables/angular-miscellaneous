@@ -1,4 +1,4 @@
-export * from './lib/card.module';
+
 export * from './lib/card.component';
 export * from './lib/components/card-header/card-header.component';
 export * from './lib/components/card-header/components/card-header-linear/card-header-linear.component';
@@ -10,3 +10,4 @@ export * from './lib/directives/card-header-mark.directive';
 export * from './lib/directives/card-header-subtitle.directive';
 export * from './lib/directives/card-title.directive';
 export * from './lib/mixins/color';
+export * from './lib/card.module';

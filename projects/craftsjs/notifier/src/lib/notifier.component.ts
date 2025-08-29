@@ -23,6 +23,7 @@ import { Notifier } from './models/notifier.model';
 import { ComponentType } from '@angular/cdk/portal';
 import { DynamicDirective } from '@craftsjs/core';
 import { NotifierPositionType } from './models/notifier-position-enum.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'addapptable-notifier',
@@ -30,7 +31,9 @@ import { NotifierPositionType } from './models/notifier-position-enum.model';
   styleUrls: ['./notifier.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [notifierAnimation.notifierAnimator],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CommonModule, DynamicDirective]
 })
 export class NotifierComponent implements OnInit, AfterViewInit, OnDestroy {
 

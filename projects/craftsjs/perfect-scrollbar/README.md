@@ -1,5 +1,5 @@
-# ADDAPPTABLES Perfect-scrollbar
-Utility for scroll browser
+# craftsjs perfect-scrollbar
+Utility directive to enhance scrollbars with perfect-scrollbar.
 
 ## Getting Started
 To get started, let's install the package through npm:
@@ -18,16 +18,29 @@ Choose the version corresponding to your Angular version:
 npm i @craftsjs/perfect-scrollbar perfect-scrollbar --S
 ```
 
+## Compatibility
+
+Current version: 6.1.0 (Compatible with Angular v18)
+
 ## How to use
 
-Import PerfectScrollbarModule in your module
+Use the standalone directive in your component
 
-```javascript
-   import { PerfectScrollbarModule } from '@craftsjs/perfect-scrollbar';
-    @NgModule({
-        imports: [PerfectScrollbarModule]
-    })
-    export class AddapptableModule { }
+```ts
+import { Component } from '@angular/core';
+import { PerfectScrollbarDirective } from '@craftsjs/perfect-scrollbar';
+
+@Component({
+    selector: 'app-example',
+    standalone: true,
+    imports: [PerfectScrollbarDirective],
+    template: `
+        <div perfectScrollbar class="menu-scroll-container">
+            ...large content
+        </div>
+    `
+})
+export class ExampleComponent {}
 ```
 
 ```css
@@ -42,7 +55,7 @@ Import PerfectScrollbarModule in your module
 ```
 
 Options
-```javascript
+```ts
 export interface Options {
     handlers?: string[];
     maxScrollbarLength?: number;
