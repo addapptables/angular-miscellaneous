@@ -5,7 +5,8 @@ import { filter, delay } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Directive({
-    selector: '[perfectScrollbar]'
+    selector: '[perfectScrollbar]',
+    standalone: true
 })
 export class PerfectScrollbarDirective implements AfterViewInit, OnDestroy {
 

@@ -10,3 +10,5 @@ export * from './lib/factory';
 export * from './lib/redux-register-feature.module';
 export * from './lib/redux-register-root.module';
 export * from './lib/redux-register.module';
+export * from './lib/redux-register.providers';
+export * from './lib/redux-tokens';

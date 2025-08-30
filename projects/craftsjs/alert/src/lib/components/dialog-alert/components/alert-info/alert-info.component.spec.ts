@@ -8,8 +8,8 @@ describe('AlertInfoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertInfoComponent ]
-    })
+    declarations: [AlertInfoComponent]
+})
     .compileComponents();
   }));
 

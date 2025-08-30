@@ -10,14 +10,15 @@ export const _CardHeaderOvalMixinBase:
   mixinColor(CardHeaderOvalBase);
 
 @Component({
-  selector: 'card-header-oval',
-  templateUrl: './card-header-oval.component.html',
-  styleUrls: ['./card-header-oval.component.scss'],
-  host: {
-    class: 'card-header-oval d-flex'
-  },
-  inputs: ['color'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'card-header-oval',
+    templateUrl: './card-header-oval.component.html',
+    styleUrls: ['./card-header-oval.component.scss'],
+    host: {
+        class: 'card-header-oval d-flex'
+    },
+    inputs: ['color'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class CardHeaderOvalComponent extends _CardHeaderOvalMixinBase {
 

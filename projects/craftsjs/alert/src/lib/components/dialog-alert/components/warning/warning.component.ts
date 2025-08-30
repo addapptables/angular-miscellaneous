@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
     class: 'alert-icon alert-icon-warning '
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
 export class WarningComponent { }

@@ -12,3 +12,4 @@ export * from './lib/models/screen.model';
 export * from './lib/selectors/responsive.selector';
 export * from './lib/services/responsive.service';
 export * from './lib/stores/responsive.store';
+export * from './lib/core.providers';

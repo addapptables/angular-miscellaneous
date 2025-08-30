@@ -1,6 +1,5 @@
 import { Injectable, Injector, Inject } from '@angular/core';
 import { NotifierPortalService } from './notifier-portal.service';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { NotifierComponent } from '../notifier.component';
 import { DOCUMENT } from '@angular/common';
 import { NotifierRef } from '../notifier-ref';
@@ -51,10 +50,9 @@ export class NotifierService {
   }
 
   open(data: Notifier, configuration: NotifierConfiguration = <NotifierConfiguration>{}): NotifierRef {
-    const portal = this._notifierPortalService.create();
-    const componentPortal = this._createComponentPortal(data);
-    const componentRef = portal.attach(componentPortal);
-    const notifierRef = new NotifierRef(componentRef.instance, portal, this._document, this._notifierPortalService.getLastUniqueId);
+    const elementInjector = this._createElementInjector(data);
+    const { componentRef, id, destroy } = this._notifierPortalService.attachComponent(NotifierComponent, elementInjector);
+    const notifierRef = new NotifierRef(componentRef.instance, id, destroy);
     const mergeConfiguration = Object.assign(this.defaultConfiguration, configuration);
     this._factoryStrategy(mergeConfiguration).newNotifier(notifierRef);
     return notifierRef;
@@ -75,14 +73,13 @@ export class NotifierService {
     }
   }
 
-  private _createComponentPortal(data: any): ComponentPortal<NotifierComponent> {
-    const injector =     Injector.create({
+  private _createElementInjector(data: any): Injector {
+    return Injector.create({
       providers: [{
         provide: ADDAPPTABLE_NOTIFIER_DATA,
         useValue: data
       }],
       parent: this._injector
-    })
-    return new ComponentPortal(NotifierComponent, null, injector);
+    });
   }
 }

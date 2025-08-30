@@ -43,13 +43,13 @@
 
         a {
             text-decoration: none;
-            color: white;
+            color: mat.m2-get-color-from-palette($primary, default-contrast);
             display: flex;
         }
 
         color: map-get($variables, text);
         width: 300px;
-        background-color: map-get($primary, 100);
+        background-color: map-get($primary, 800);
         @include mat.elevation(1);
         z-index: 2;
         flex: 1 1 100%;

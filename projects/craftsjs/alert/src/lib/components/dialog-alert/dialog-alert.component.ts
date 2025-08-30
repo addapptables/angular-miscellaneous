@@ -18,6 +18,10 @@ import { AlertModel } from '../../models/alert.model';
 import { alertComponents } from './components/components';
 import { DynamicDirective } from '@craftsjs/core';
 
+import { TranslateModule } from '@ngx-translate/core';
+import { AlertOkButtonComponent } from './components/buttons/alert-ok-button/alert-ok-button.component';
+import { AlertCancelButtonComponent } from './components/buttons/alert-cancel-button/alert-cancel-button.component';
+
 export const CRAFTSJS_ALERT_DATA = new InjectionToken<any>('CraftsjsAlertData');
 
 @Component({
@@ -25,7 +29,14 @@ export const CRAFTSJS_ALERT_DATA = new InjectionToken<any>('CraftsjsAlertData');
   templateUrl: './dialog-alert.component.html',
   styleUrls: ['./dialog-alert.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    TranslateModule,
+    DynamicDirective,
+    AlertOkButtonComponent,
+    AlertCancelButtonComponent
+]
 })
 export class DialogAlertComponent implements OnInit, AfterViewInit {
 

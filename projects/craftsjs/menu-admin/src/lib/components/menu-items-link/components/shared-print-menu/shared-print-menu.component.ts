@@ -1,10 +1,14 @@
 import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { MenuSingleComponent } from '../menu-single/menu-single.component';
+import { MenuGroupComponent } from '../menu-group/menu-group.component';
 import { Store } from '@ngrx/store';
 import { ResponsiveService } from '@craftsjs/core';
 import { MenuModel } from '../../../../models/menu.model';
 import * as MenuActions from '../../../../actions/menu.actions';
 import { MenuService } from '../../../../services/menu.service';
 import { Observable } from 'rxjs';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
     selector: 'shared-print-menu',
@@ -14,7 +18,10 @@ import { Observable } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'menu-items'
-    }
+  },
+  standalone: true,
+  imports: [RouterModule, MenuSingleComponent, MenuGroupComponent, NgClass, AsyncPipe],
+  providers: [ResponsiveService]
 })
 export class SharedPrintMenuComponent implements OnInit {
     @Input()

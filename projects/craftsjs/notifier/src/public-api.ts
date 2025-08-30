@@ -15,3 +15,4 @@ export * from './lib/services/notifier-container.service';
 export * from './lib/services/notifier-portal.service';
 export * from './lib/services/notifier.service';
 export * from './lib/tokens';
+export * from './lib/notifier.providers';

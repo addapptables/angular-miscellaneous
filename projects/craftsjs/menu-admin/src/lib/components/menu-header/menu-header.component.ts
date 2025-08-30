@@ -1,9 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import * as MenuActions from '../../actions/menu.actions';
 import { MenuHeaderModel } from '../../models/menu-header.model';
 import { Observable } from 'rxjs';
 import { MenuService } from '../../services/menu.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'menu-header',
@@ -11,7 +14,9 @@ import { MenuService } from '../../services/menu.service';
     host: {
         class: 'menu-tools d-flex justify-content-between align-items-center col-12'
     },
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [MatIcon, MatButtonModule, AsyncPipe]
 })
 export class MenuHeaderComponent implements OnInit {
 

@@ -26,10 +26,14 @@ export abstract class AbstractStrategy implements Strategy, OnDestroy {
                 notifier.close();
             }
             const element = this._document.querySelector(`#${notifierRef.component._id} > addapptable-notifier > .addapptable-notifier`);
+          // Ensure we don't access clientHeight on a null element
+          const newNotifierHeight = element ? (element as HTMLDivElement).clientHeight : 0;
             this.notifiers.forEach(notifier => {
                 const elementNotifier = this._document
                     .querySelector<HTMLDivElement>(`#${notifier.component._id} > addapptable-notifier > .addapptable-notifier`);
-                notifier.changedStyle(this.getStyleNotifierPosition(elementNotifier, element.clientHeight));
+              if (elementNotifier) {
+                notifier.changedStyle(this.getStyleNotifierPosition(elementNotifier, newNotifierHeight));
+              }
             });
             this.notifiers.push(notifierRef);
         });
@@ -44,13 +48,16 @@ export abstract class AbstractStrategy implements Strategy, OnDestroy {
         if (notifier >= 0) {
             const element = this._document
                 .querySelector<HTMLDivElement>(`#${this.notifiers[notifier].component._id} > addapptable-notifier > .addapptable-notifier`);
-            const clientHeightElementDelete = element.clientHeight;
+          // Safely get height; if element is missing, default to 0 to avoid errors
+          const clientHeightElementDelete = element ? element.clientHeight : 0;
             this.notifiers.splice(notifier, 1);
             for (let index = notifier - 1; index >= 0; index--) {
                 const notifierStyle = this.notifiers[index];
                 const elementChange = this._document
                     .querySelector<HTMLDivElement>(`#${notifierStyle.component._id} > addapptable-notifier > .addapptable-notifier`);
-                notifierStyle.changedStyle(this.getStyleDeleteNotifier(elementChange, clientHeightElementDelete));
+              if (elementChange) {
+                  notifierStyle.changedStyle(this.getStyleDeleteNotifier(elementChange, clientHeightElementDelete));
+                }
             }
         }
     }

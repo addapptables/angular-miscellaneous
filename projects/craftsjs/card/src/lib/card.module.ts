@@ -1,43 +1,39 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CardComponent } from './card.component';
 import { CardHeaderComponent } from './components/card-header/card-header.component';
-import { CardTitleDirective } from './directives/card-title.directive';
+import { CardHeaderLinearComponent } from './components/card-header/components/card-header-linear/card-header-linear.component';
+import { CardHeaderOvalComponent } from './components/card-header/components/card-header-oval/card-header-oval.component';
 import { CardBodyDirective } from './directives/card-body.directive';
-import { CardFooterDirective } from './directives/card-footer.directive';
 import { CardDividerDirective } from './directives/card-divider.directive';
+import { CardFooterDirective } from './directives/card-footer.directive';
 import { CardHeaderMarkDirective } from './directives/card-header-mark.directive';
 import { CardHeaderSubtitleDirective } from './directives/card-header-subtitle.directive';
-import { CardHeaderOvalComponent } from './components/card-header/components/card-header-oval/card-header-oval.component';
-import { CardHeaderLinearComponent } from './components/card-header/components/card-header-linear/card-header-linear.component';
+import { CardTitleDirective } from './directives/card-title.directive';
 
 @NgModule({
   imports: [
-    CommonModule
-  ],
-  declarations: [
     CardComponent,
     CardHeaderComponent,
-    CardTitleDirective,
+    CardHeaderLinearComponent,
+    CardHeaderOvalComponent,
     CardBodyDirective,
-    CardFooterDirective,
     CardDividerDirective,
+    CardFooterDirective,
     CardHeaderMarkDirective,
     CardHeaderSubtitleDirective,
-    CardHeaderOvalComponent,
-    CardHeaderLinearComponent
+    CardTitleDirective
   ],
   exports: [
     CardComponent,
     CardHeaderComponent,
-    CardTitleDirective,
-    CardBodyDirective,
-    CardFooterDirective,
-    CardDividerDirective,
-    CardHeaderSubtitleDirective,
-    CardHeaderMarkDirective,
+    CardHeaderLinearComponent,
     CardHeaderOvalComponent,
-    CardHeaderLinearComponent
+    CardBodyDirective,
+    CardDividerDirective,
+    CardFooterDirective,
+    CardHeaderMarkDirective,
+    CardHeaderSubtitleDirective,
+    CardTitleDirective
   ]
 })
 export class CardModule { }

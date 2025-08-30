@@ -1,6 +1,6 @@
-# ADDAPPTABLES card
+# craftsjs card
 
-Craftsjs card is a library for angular
+CraftsJS Card components and directives for Angular.
 
 [See demo](http://addapptables.com/admin/components/cards)
 
@@ -13,6 +13,7 @@ Choose the version corresponding to your Angular version:
 
  Angular     | @craftsjs/card
  ----------- | -------------------
+ 18          | 6.x
  15          | 5.x
  13          | 4.x
  12          | 3.x
@@ -23,26 +24,49 @@ Choose the version corresponding to your Angular version:
 npm i @craftsjs/card --S
 ```
 
+## Compatibility
+
+Current version: 6.1.0 (Compatible with Angular v18)
+
 Install peer dependencies
 
 ```
-npm i
-@craftsjs/core
-@angular/material
-@angular/animations
-@angular/cdk --S
+npm i @craftsjs/core @angular/material @angular/animations @angular/cdk --S
 ```
 
-## How to use
+## How to use (standalone, Angular 15+/18)
 
-- Import the module CardModule
+- Import the standalone components and directives where you use them:
 
 ```typescript
-import { CardModule } from '@craftsjs/card';
-@NgModule({
-  imports: [CardModule]
+import { Component } from '@angular/core';
+import {
+  CardComponent,
+  CardHeaderComponent,
+  CardHeaderLinearComponent,
+  CardHeaderOvalComponent,
+  CardBodyDirective,
+  CardTitleDirective
+} from '@craftsjs/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
+@Component({
+  selector: 'app-card-demo',
+  standalone: true,
+  imports: [
+    CardComponent,
+    CardHeaderComponent,
+    CardHeaderLinearComponent,
+    CardHeaderOvalComponent,
+    CardBodyDirective,
+    CardTitleDirective,
+    MatIconModule,
+    MatDividerModule
+  ],
+  templateUrl: './card-demo.component.html'
 })
-export class YourModule { }
+export class CardDemoComponent {}
 ```
 
 simple card
@@ -80,7 +104,7 @@ Oval card
 </craftsjs-card>
 ```
 
-- Finally, it is important to import the styles to the application
+- Finally, import the styles into your application
 
 ```scss
 @import '~@craftsjs/core/craftsjs-grid.theme';
@@ -109,6 +133,7 @@ body.theme-default {
 ```
 
 - Do not forget to put the theme-default class in the html body
+  and ensure Angular Material animations are provided (e.g., in main.ts: provideAnimations()).
 
 ```html
 <body class="theme-default"></body>

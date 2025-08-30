@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { SharedPrintMenuComponent } from './components/shared-print-menu/shared-print-menu.component';
 import { MenuModel } from '../../models/menu.model';
 
 @Component({
@@ -8,7 +9,9 @@ import { MenuModel } from '../../models/menu.model';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         class: 'menu-children-items'
-    }
+    },
+    standalone: true,
+    imports: [SharedPrintMenuComponent]
 })
 export class MenuItemsLinkComponent {
     @Input()

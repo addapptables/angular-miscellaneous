@@ -1,16 +1,26 @@
-<button class="menu-children-multioption menu-group" *ngIf="menuGroup.multiOption" mat-button (click)="openAndClose()">
+@if (menuGroup.multiOption) {
+  <button class="menu-children-multioption menu-group" mat-button (click)="openAndClose()">
     <div class="d-flex flex-row justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-            <i *ngIf="menuGroup.class" class="menu-items-button-icon {{menuGroup.class}}" matSuffix>{{menuGroup.value}}</i>
-            <span class="menu-children-text text-dots" *ngIf="!menuGroup.class">{{menuGroup.value}}</span>
-            <span [class]="!(collapse$ | async)? 'menu-items-title text-dots': 'menu-mini-items-title text-dots'">
-                {{menuGroup.title | translate}}
-            </span>
-        </div>
-        <div [class]="!(collapse$ | async)? 'd-flex': 'd-flex menu-mini-hide'">
-            <mat-icon *ngIf="!(isOpen$ | async)" matSuffix>arrow_drop_down</mat-icon>
-            <mat-icon *ngIf="isOpen$ | async" matSuffix>arrow_drop_up</mat-icon>
-        </div>
+      <div class="d-flex align-items-center">
+        @if (menuGroup.class) {
+          <i class="menu-items-button-icon {{menuGroup.class}}" matSuffix>{{menuGroup.value}}</i>
+        }
+        @if (!menuGroup.class) {
+          <span class="menu-children-text text-dots">{{menuGroup.value}}</span>
+        }
+        <span [class]="!(collapse$ | async)? 'menu-items-title text-dots': 'menu-mini-items-title text-dots'">
+          {{menuGroup.title | translate}}
+        </span>
+      </div>
+      <div [class]="!(collapse$ | async)? 'd-flex': 'd-flex menu-mini-hide'">
+        @if (!(isOpen$ | async)) {
+          <mat-icon matSuffix>arrow_drop_down</mat-icon>
+        }
+        @if (isOpen$ | async) {
+          <mat-icon matSuffix>arrow_drop_up</mat-icon>
+        }
+      </div>
     </div>
-</button>
+  </button>
+}
 <ng-content></ng-content>

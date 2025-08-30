@@ -8,8 +8,8 @@ describe('AlertOkButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertOkButtonComponent ]
-    })
+    declarations: [AlertOkButtonComponent]
+})
     .compileComponents();
   }));
 

@@ -8,6 +8,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
     class: 'alert-icon alert-icon-error'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class ErrorComponent { }

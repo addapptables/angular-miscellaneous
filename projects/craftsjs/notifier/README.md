@@ -1,6 +1,6 @@
-# CRAFTSJS notifier
+# craftsjs notifier
 
-CRAFTSJS notifier is a library for angular
+CraftsJS Notifier service and component for Angular.
 
 [See demo](http://addapptables.com/admin/components/notifiers)
 
@@ -11,7 +11,7 @@ To get started, let's install the package through npm:
 
 Choose the version corresponding to your Angular version:
 
- Angular     | @craftsjs/alert
+ Angular     | @craftsjs/notifier
  ----------- | -------------------
  18          | 6.x
  15          | 5.x
@@ -19,61 +19,67 @@ Choose the version corresponding to your Angular version:
  12          | 3.x
  11          | 2.x
 
+```
 npm i @craftsjs/notifier --S
 ```
+
 ## Compatibility
 
-Version 6: Compatible with Angular v18.
-npm i @craftsjs/notifier --S
-```
+Current version: 6.1.0 (Compatible with Angular v18)
 
 Install peer dependencies
 
 ```
-npm i
-@craftsjs/core
-@angular/material
-@angular/cdk
-@angular/animations --S
+npm i @craftsjs/core @angular/material @angular/cdk @angular/animations --S
 ```
 
-## How to use
+## How to use (standalone)
 
-- Import the module NotifierModule into the AppModule
+- Provide the notifier and use the service. Place the component where notifications should render.
 
 ```typescript
-import { NotifierModule } from '@craftsjs/notifier';
-@NgModule({
-  imports: [
-    NotifierModule.forRoot() ,
-    // options
-    /*NotifierModule.forRoot({
+// main.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideCraftsjsNotifier } from '@craftsjs/notifier';
+import { AppComponent } from './app/app.component';
+import { NotifierPositionType } from '@craftsjs/notifier';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideCraftsjsNotifier({
       position: NotifierPositionType.bottomRight,
       timeout: 5000,
       classIcon: 'material-icons',
       iconValue: 'notifications'
-    })*/
+    })
   ]
-})
-export class AppModule { }
+});
 ```
 
 - Import the module NotifierModule into the ChildModule
 
 ```typescript
 import { NotifierModule } from '@craftsjs/notifier';
-@NgModule({
-  imports: [NotifierModule],
-  declarations: [NotifierComponent]
+import { Component } from '@angular/core';
+import { NotifierComponent } from '@craftsjs/notifier';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [NotifierComponent],
+  template: `
+    <button type="button" mat-raised-button color="primary" (click)="openNotifier()">Notifier success</button>
+    <addapptable-notifier />
+  `
 })
-export class ChildModule { }
+export class AppComponent { /* ... */ }
 ```
 
 - Create a component an inject NotifierService
 
 ```typescript
 @Component(// ...)
-export class NotifierComponent {
+export class NotifierDemoComponent {
 
   constructor(private notifierService: NotifierService) { }
 
@@ -153,7 +159,7 @@ export class NotifierCustomSuccessComponent {
 }
 ```
 
-## Import css
+## Styles
 
 ```scss
 @import '~@angular/material/theming';
@@ -178,6 +184,26 @@ body.theme-default {
 ```
 
 - Do not forget to put the theme-default class in the html body
+  and ensure Angular Material animations are provided (e.g., provideAnimations()).
+
+## NgModule (compatibility)
+
+```ts
+import { NgModule } from '@angular/core';
+import { NotifierModule } from '@craftsjs/notifier';
+
+@NgModule({
+  imports: [
+    NotifierModule.forRoot({
+      position: NotifierPositionType.bottomRight,
+      timeout: 5000,
+      classIcon: 'material-icons',
+      iconValue: 'notifications'
+    })
+  ]
+})
+export class AppModule {}
+```
 
 ```html
 <body class="theme-default"></body>

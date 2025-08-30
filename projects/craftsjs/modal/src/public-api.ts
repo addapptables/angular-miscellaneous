@@ -10,3 +10,4 @@ export * from './lib/directives/modal-header.directive';
 export * from './lib/models/modal-config.model';
 export * from './lib/services/modal.service';
 export * from './lib/tokens';
+export * from './lib/modal.providers';

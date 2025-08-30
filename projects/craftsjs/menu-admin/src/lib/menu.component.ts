@@ -9,6 +9,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { PerfectScrollbarDirective } from '@craftsjs/perfect-scrollbar';
 import { Store } from '@ngrx/store';
 import { tap, delay } from 'rxjs/operators';
 import * as MenuActions from './actions/menu.actions';
@@ -22,7 +24,9 @@ import { MenuService } from './services/menu.service';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'principal-menu d-flex flex-column flex-wrap align-content-start'
-  }
+  },
+  standalone: true,
+  imports: [CommonModule, PerfectScrollbarDirective]
 })
 export class MenuComponent implements OnInit, OnDestroy {
 

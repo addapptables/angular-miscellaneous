@@ -14,3 +14,4 @@ export * from './lib/components/dialog-alert/components/warning/warning.componen
 export * from './lib/models/alert-enum.model';
 export * from './lib/models/alert.model';
 export * from './lib/services/alert.service';
+export * from './lib/alert.providers';

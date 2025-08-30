@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'alert-icon alert-icon-success'
-  }
+  },
+  standalone: true
 })
 export class AlertSuccessComponent { }

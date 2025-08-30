@@ -1,6 +1,6 @@
 # craftsjs menu
 
-ADAPTABLES menu is a library for angular
+CraftsJS menu is a library for Angular.
 
 [See demo](http://craftsjs.com/admin/dashboard)
 
@@ -13,7 +13,7 @@ Choose the version corresponding to your Angular version:
 
  | Angular | @craftsjs/menu-admin |
  | ------- | -------------------- |
- | 18      | 6.x                  |
+| 18      | 6.x                  |
  | 15      | 5.x                  |
  | 13      | 4.x                  |
  | 12      | 3.x                  |
@@ -26,14 +26,7 @@ npm i @craftsjs/menu-admin --S
 Install peer dependencies
 
 ```
-npm i
-@craftsjs/responsive
-@craftsjs/ngrx-actions
-@craftsjs/perfect-scrollbar
-@craftsjs/core
-perfect-scrollbar
-@ngrx/store
-@ngx-translate/core --S
+npm i @craftsjs/responsive @craftsjs/ngrx-action @craftsjs/perfect-scrollbar @craftsjs/core perfect-scrollbar @ngrx/store @ngx-translate/core --S
 ```
 
 ## Configuration
@@ -79,25 +72,54 @@ export class AppModule { }
 ```
 
 
-## How to use?
+## How to use (standalone, Angular 15+/18)
+
+- Providers en el bootstrap (registra el feature del menú):
+
+```ts
+// main.ts
+import { bootstrapApplication, importProvidersFrom } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideStore } from '@ngrx/store';
+import { provideCraftsjsMenu } from '@craftsjs/menu-admin';
+import { AppComponent } from './app/app.component';
+import { TranslateModule } from '@ngx-translate/core';
+
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideAnimations(), // or provideNoopAnimations()
+        provideStore(),
+    provideCraftsjsMenu(),
+        // i18n (opcional, según tu app)
+        importProvidersFrom(TranslateModule.forRoot())
+    ]
+});
+```
+
+- Usa los componentes standalone del menú en tu componente:
+
+```ts
+// app.component.ts
+import { Component } from '@angular/core';
+import { MenuComponent, MenuHeaderComponent, MenuUserComponent, MenuItemsLinkComponent } from '@craftsjs/menu-admin';
+
+@Component({
+    selector: 'app-root',
+    standalone: true,
+    imports: [MenuComponent, MenuHeaderComponent, MenuUserComponent, MenuItemsLinkComponent],
+    templateUrl: './app.component.html'
+})
+export class AppComponent {}
+```
 
 
 ```typescript
-
-import { MenuModule } from '@craftsjs/menu';
-@NgModule({
-  imports: [MenuModule]
-  declarations: [MenuComponent]
+// component (ejemplo de datos)
+import { MenuModel, MenuHeaderModel, MenuUserModel } from '@craftsjs/menu-admin';
+@Component({
+    // ...
 })
-export class YourModule { }
-
-
-// component
-import { MenuModel, MenuHeaderModel, MenuUserModel } from '@craftsjs/menu';
-@Component(
-    ...
-)
-export class MenuComponent {
+export class ExampleComponent {
     // variable to show the links of the menu
     menus: MenuModel[] = [
     {
@@ -150,25 +172,48 @@ export class MenuComponent {
 
 ```html
 <craftsjs-menu>
-  <menu-header [header]="header">
-  </menu-header>
-  <menu-user [user]="user">
-  </menu-user>
-  <menu-items-link [menus]="menus">
-  </menu-items-link>
+    <menu-header [header]="header"></menu-header>
+    <menu-user [user]="user"></menu-user>
+    <menu-items-link [menus]="menus"></menu-items-link>
 </craftsjs-menu>
 ```
 
 
 ```html
-    <button-mobile></button-mobile>
+<button-mobile></button-mobile>
+```
+
+### Lazy por rutas (opcional)
+
+```ts
+// app.routes.ts
+import { Routes } from '@angular/router';
+import { provideCraftsjsMenu } from '@craftsjs/menu-admin';
+
+export const routes: Routes = [
+    {
+        path: 'admin',
+        loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
+    providers: [provideCraftsjsMenu()]
+    }
+];
+```
+
+## NgModule (compatibilidad)
+
+```ts
+import { MenuModule } from '@craftsjs/menu-admin';
+@NgModule({
+    imports: [MenuModule]
+})
+export class YourModule {}
 ```
 
 
 ```scss
 @import '~@craftsjs/core/craftsjs-grid.theme';
 @import '~@angular/material/theming';
-@import '~@craftsjs/menu/_craftsjs-menu.theme.scss';
+@import '~@craftsjs/menu-admin/_craftsjs-menu.theme.scss';
 
 $app-primary: mat-palette($mat-teal, 800);
 $craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
@@ -191,14 +236,20 @@ body.theme-default {
 <body class="theme-default"></body>
 ```
 
-# Assets
+## Notas
+
+- Requiere `@ngrx/store` provisto en la app (p. ej., `provideStore()` en standalone o `StoreModule.forRoot()` en NgModule).
+- Angular Material necesita `provideAnimations()` o `NoopAnimations`.
+- Evita registrar el mismo feature key más de una vez.
+
+## Assets
 
 Background menu sidebar
 
 ```
 /assets/images/backgrounds/sidebar.jpg
+```
 
 ## Compatibility
 
-Version 6: Compatible with Angular v18.
-```
+Current version: 6.1.0 (Compatible with Angular v18)

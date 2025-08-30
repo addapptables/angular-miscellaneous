@@ -4,7 +4,7 @@ Note: This library is an improvement on the ngrx-actions library.
 
 ## Compatibility
 
-Version 6: Compatible with Angular v18.
+Current version: 6.1.0 (Compatible with Angular v18)
 
 Actions/reducer utility for NGRX. It provides a handful of functions to make NGRX/Redux more Angular-tastic.
 
@@ -50,7 +50,7 @@ decorated with the `Action` decorator with an argument of the action class
 you want to match it on.
 
 ```javascript
-import { Store, Action } from 'ngrx-actions';
+import { Store, Action } from '@craftsjs/ngrx-actions';
 
 @Store({
     collection: [],
@@ -102,7 +102,7 @@ To hook it up to NGRX, all you have to do is call the `createReducer` function p
 your store. Now pass the `myReducer` just like you would a function with a switch statement inside.
 
 ```javascript
-import { createReducer } from 'ngrx-actions';
+import { createReducer } from '@craftsjs/ngrx-actions';
 export function myReducer(state, action) { return createReducer(MyStore)(state, action); }
 ```
 
@@ -110,7 +110,57 @@ In the above example, I return a function that returns my `createReducer`. This 
 complains stating `Function expressions are not supported in decorators` if we just assign
 the `createReducer` method directly. This is a known issue and [other NGRX](https://github.com/ngrx/platform/issues/116) things suffer from it too.
 
-Next, pass that to your NGRX module just like normal:
+Next, wire the reducer registration. You can use standalone providers (Angular 15+/18) or NgModules.
+
+Standalone (recommended on Angular 18):
+
+```typescript
+// main.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideStore } from '@ngrx/store';
+import { provideReduxRegisterRoot, provideReduxRegisterFeature } from '@craftsjs/ngrx-actions';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideStore(),
+        provideReduxRegisterRoot({
+            pizza: PizzaStore
+        }),
+        // Optional: register a feature
+        provideReduxRegisterFeature('menu', {
+            sidebar: MenuStore
+        })
+    ]
+});
+```
+
+Lazy feature registration (routes):
+
+```typescript
+// app.routes.ts
+import { Routes } from '@angular/router';
+import { provideReduxRegisterFeature } from '@craftsjs/ngrx-actions';
+
+export const routes: Routes = [
+    {
+        path: 'admin',
+        loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent),
+        providers: [
+            provideReduxRegisterFeature('admin', {
+                users: UsersStore,
+                roles: RolesStore,
+            }),
+        ],
+    },
+];
+```
+
+Notes:
+- Call `provideStore()` once at app bootstrap before registering features.
+- Do not duplicate the same feature key registration in multiple places.
+
+NgModule (compatibility):
 
 ```javascript
 @NgModule({
@@ -144,7 +194,7 @@ If you want to use NGRX effects, I've created a lettable operator that will allo
 pass the action class as the argument like this:
 
 ```javascript
-import { ofAction } from 'ngrx-actions';
+import { ofAction } from '@craftsjs/ngrx-actions';
 
 @Injectable()
 export class MyEffects {

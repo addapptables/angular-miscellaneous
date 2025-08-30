@@ -1,14 +1,22 @@
 <ul [ngClass]="{'shared-print-detail': isDetail && !(collapse$ | async)}">
-  <li [ngClass]="{'shared-print-detail-li': isDetail && !(collapse$ | async)}" *ngFor="let menu of menus">
-    <a #menuElement="routerLinkActive" [routerLinkActive]="!menu.multiOption? 'menu-items-button-active': ''"
-      [routerLinkActiveOptions]="{exact: menu.exact}" [routerLink]="menu.url">
-      <menu-single *ngIf="!menu.multiOption" [menu]="menu" (click)="openCloseMenu()">
-      </menu-single>
-    </a>
-    <menu-group #menuGroup *ngIf="menu.multiOption" [menu]="menu">
-      <shared-print-menu class="menu-children" [menus]="menu.children" *ngIf="menuGroup.isOpen$ | async"
-        [isDetail]="true">
-      </shared-print-menu>
-    </menu-group>
-  </li>
+  @for (menu of menus; track menu) {
+    <li [ngClass]="{'shared-print-detail-li': isDetail && !(collapse$ | async)}">
+      <a #menuElement="routerLinkActive" [routerLinkActive]="!menu.multiOption? 'menu-items-button-active': ''"
+        [routerLinkActiveOptions]="{exact: menu.exact}" [routerLink]="menu.url">
+        @if (!menu.multiOption) {
+          <menu-single [menu]="menu" (click)="openCloseMenu()">
+          </menu-single>
+        }
+      </a>
+      @if (menu.multiOption) {
+        <menu-group #menuGroup [menu]="menu">
+          @if (menuGroup.isOpen$ | async) {
+            <shared-print-menu class="menu-children" [menus]="menu.children"
+              [isDetail]="true">
+            </shared-print-menu>
+          }
+        </menu-group>
+      }
+    </li>
+  }
 </ul>

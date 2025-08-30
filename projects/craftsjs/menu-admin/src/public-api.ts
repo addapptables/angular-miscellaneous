@@ -19,3 +19,4 @@ export * from './lib/models/menu.store.model';
 export * from './lib/selectors/menu.selector';
 export * from './lib/services/menu.service';
 export * from './lib/store/menu.store';
+export * from './lib/menu.providers';
