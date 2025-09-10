@@ -13,14 +13,15 @@
         </span>
       </div>
       <div [class]="!(collapse$ | async)? 'd-flex': 'd-flex menu-mini-hide'">
-        @if (!(isOpen$ | async)) {
-          <mat-icon matSuffix>arrow_drop_down</mat-icon>
-        }
-        @if (isOpen$ | async) {
-          <mat-icon matSuffix>arrow_drop_up</mat-icon>
-        }
+        <mat-icon matSuffix class="menu-group-chevron" [@chevronRotate]="(isOpen$ | async) ? 'open' : 'closed'">
+          arrow_drop_down
+        </mat-icon>
       </div>
     </div>
   </button>
 }
-<ng-content></ng-content>
+<div class="menu-group-content" [class.cv]="useContentVisibility"
+  [@collapseExpand]="(isOpen$ | async) ? 'open' : 'closed'" (@collapseExpand.start)="onCollapseStart($event)"
+  (@collapseExpand.done)="onCollapseDone($event)">
+  <ng-content></ng-content>
+  </div>

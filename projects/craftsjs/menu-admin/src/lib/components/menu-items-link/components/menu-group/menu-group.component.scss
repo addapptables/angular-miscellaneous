@@ -2,3 +2,16 @@
     width: 100%;
     text-align: start;
 }
+
+.menu-group-content{
+    overflow: hidden;
+    contain: layout paint;
+    will-change: height, opacity;
+}
+
+.menu-group-content.cv{
+    content-visibility: auto;
+    contain-intrinsic-size: 0 200px; // fallback size to avoid layout jank
+}
+
+// rotation now handled by Angular animations on chevronRotate
