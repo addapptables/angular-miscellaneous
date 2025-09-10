@@ -10,11 +10,7 @@
       </a>
       @if (menu.multiOption) {
         <menu-group #menuGroup [menu]="menu">
-          @if (menuGroup.isOpen$ | async) {
-            <shared-print-menu class="menu-children" [menus]="menu.children"
-              [isDetail]="true">
-            </shared-print-menu>
-          }
+          <shared-print-menu class="menu-children" [menus]="menu.children" [isDetail]="true"></shared-print-menu>
         </menu-group>
       }
     </li>
