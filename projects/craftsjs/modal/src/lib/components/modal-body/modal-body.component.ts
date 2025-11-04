@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { PerfectScrollbarDirective } from '@craftsjs/perfect-scrollbar';
 
 import PerfectScrollbar from 'perfect-scrollbar';
 
@@ -12,7 +13,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
   },
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: []
+  imports: [PerfectScrollbarDirective]
 })
 export class ModalBodyComponent implements AfterViewInit, AfterViewChecked { 
 
