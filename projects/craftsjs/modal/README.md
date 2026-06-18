@@ -11,6 +11,7 @@ Choose the version corresponding to your Angular version:
 
  Angular     | @craftsjs/modal
  ----------- | -------------------
+ 19          | 7.x
  18          | 6.x
  15          | 5.x
  13          | 4.x
@@ -23,7 +24,7 @@ npm i @craftsjs/modal --S
 
 ## Compatibility
 
-Current version: 6.1.0 (Compatible with Angular v18)
+Current version: 7.0.0 (Compatible with Angular v19)
 
 Install peer dependencies
 
