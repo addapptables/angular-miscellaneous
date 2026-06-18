@@ -4,10 +4,11 @@ Base utilities for CraftsJS: a responsive NgRx feature store and a directive for
 
 ## Compatibility
 
-Current version: 6.1.0 (compatible with Angular v18)
+Current version: 7.0.0 (compatible with Angular v19)
 
 | Angular | @craftsjs/core |
 | ------- | -------------- |
+| 19      | 7.x            |
 | 18      | 6.x            |
 | 15      | 5.x            |
 | 13      | 4.x            |

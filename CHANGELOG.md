@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.0] - 2026-06-18
+
+Highlights
+- Compatibility: Upgraded the workspace and all libraries to Angular v19 (this release is the v7 line).
+- Toolchain: Angular 19.2, Angular CLI 19.2, ng-packagr 19.2, TypeScript 5.6, zone.js 0.15, rxjs 7.8.
+- Dependencies: `@angular/material`/`@angular/cdk` 19, `@ngrx/store` 19, `@ngx-translate/core` 16.
+- Library peers bumped to `>= 19.0.0 < 20.0.0` and `rxjs >= 7.4.0 < 8.0.0`; all `@craftsjs/*` packages bumped to 7.0.0.
+- Cleanup: removed legacy tooling (tslint, codelyzer, protractor, jasminewd2, eslint-plugin-deprecation) and the obsolete `enableIvy` / `ngcc` references.
+
+Upgrade instructions
+1. Install the v7 packages (compatible with Angular v19):
+
+```bash
+npm i @craftsjs/menu-admin@7.x @craftsjs/core@7.x @craftsjs/alert@7.x @craftsjs/modal@7.x @craftsjs/notifier@7.x @craftsjs/card@7.x @craftsjs/perfect-scrollbar@7.x @craftsjs/ngrx-action@7.x
+```
+
+2. Ensure your app runs on Angular 19, TypeScript 5.6 and rxjs 7.
+
 ## [v6.0.0] - 2025-08-20
 
 Highlights

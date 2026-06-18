@@ -4,6 +4,8 @@ Craftsjs miscellaneous is a set of software libraries for Angular
 
 ## Compatibility
 
+Version 7: Compatible with Angular v19.
+
 Version 6: Compatible with Angular v18.
 
 ## Getting Started

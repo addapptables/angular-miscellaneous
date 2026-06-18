@@ -4,7 +4,7 @@ Note: This library is an improvement on the ngrx-actions library.
 
 ## Compatibility
 
-Current version: 6.1.0 (Compatible with Angular v18)
+Current version: 7.0.0 (Compatible with Angular v19)
 
 Actions/reducer utility for NGRX. It provides a handful of functions to make NGRX/Redux more Angular-tastic.
 
