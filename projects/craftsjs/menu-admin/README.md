@@ -212,25 +212,45 @@ export class YourModule {}
 
 
 ```scss
-@import '~@craftsjs/core/craftsjs-grid.theme';
-@import '~@angular/material/theming';
-@import '~@craftsjs/menu-admin/_craftsjs-menu.theme.scss';
+@use '@angular/material' as mat;
+@use '@craftsjs/menu-admin/craftsjs-menu.theme' as menu;
 
-$app-primary: mat-palette($mat-teal, 800);
-$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$craftsjs-app-warn: mat-palette($mat-red);
-$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+// Grid utility classes are now plain CSS:
+//   @use '@craftsjs/core/craftsjs-grid.theme.css';
+
+@include mat.core();
+
+$craftsjs-app-primary: mat.m2-define-palette(mat.$m2-teal-palette, 800);
+$craftsjs-app-accent:  mat.m2-define-palette(mat.$m2-pink-palette, 800, A100, 100);
+$craftsjs-app-warn:    mat.m2-define-palette(mat.$m2-red-palette);
+$craftsjs-app-theme: mat.m2-define-light-theme((
+    color: (
+        primary: $craftsjs-app-primary,
+        accent: $craftsjs-app-accent,
+        warn: $craftsjs-app-warn,
+    ),
+));
+
+// The menu mixin expects the Material color config map.
+$craftsjs-color-config: mat.m2-get-color-config($craftsjs-app-theme);
+
 $craftsjs-theme-variables: (
     text: white,
     transition-time: 250ms,
     border-radius: 5px
 );
-@include mat-core();
+
+@include mat.all-component-themes($craftsjs-app-theme);
+
 body.theme-default {
-    @include angular-material-theme($craftsjs-app-theme);
-    @include menu($craftsjs-app-theme, $craftsjs-theme-variables);
+    @include menu.menu($craftsjs-color-config, $craftsjs-theme-variables);
 }
 ```
+
+> Note: the library now uses the modern Sass module system (`@use`) and the
+> Angular Material **M2** theming API. The legacy `@import '~@angular/material/theming'`
+> API was removed in Angular Material 19. The grid is shipped as compiled CSS at
+> `@craftsjs/core/craftsjs-grid.theme.css`.
 
 
 ```html

@@ -5,6 +5,21 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+// Forward the Bootstrap-style grid API so consumers that `@use` this theme
+// keep access to the functions, variables and mixins.
+// (@forward/@use rules must precede any style rules.)
+@forward "functions";
+@forward "variables";
+@forward "mixins/breakpoints";
+@forward "mixins/grid-framework";
+@forward "mixins/grid";
+
+// Emit the generated grid and utility classes.
+@use "grid";
+@use "utilities/display";
+@use "utilities/flex";
+@use "utilities/spacing";
+
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
@@ -15,15 +30,3 @@ html {
 *::after {
   box-sizing: inherit;
 }
-
-@import "functions";
-@import "variables";
-
-@import "mixins/breakpoints";
-@import "mixins/grid-framework";
-@import "mixins/grid";
-
-@import "grid";
-@import "utilities/display";
-@import "utilities/flex";
-@import "utilities/spacing";

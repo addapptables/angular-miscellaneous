@@ -1,16 +1,27 @@
 // Bootstrap functions
 //
 // Utility mixins and functions for evaluating source code across our variables, maps, and mixins.
+//
+// NOTE: This module is intentionally pure (only Sass built-in modules) so that
+// `_variables.scss` can `@use` it without creating a circular dependency. The
+// map-reading helpers therefore take the relevant map as an explicit argument.
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:meta';
 
 // Ascending
 // Used to evaluate Sass maps like our grid breakpoints.
-@mixin _assert-ascending($map, $map-name) {
+@mixin assert-ascending($map, $map-name) {
   $prev-key: null;
   $prev-num: null;
   @each $key, $num in $map {
-    @if $prev-num == null or unit($num) == "%" {
+    @if $prev-num == null or math.unit($num) == "%" {
       // Do nothing
-    } @else if not comparable($prev-num, $num) {
+    } @else if not math.compatible($prev-num, $num) {
       @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
     } @else if $prev-num >= $num {
       @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
@@ -22,9 +33,9 @@
 
 // Starts at zero
 // Another grid mixin that ensures the min-width of the lowest breakpoint starts at 0.
-@mixin _assert-starts-at-zero($map) {
-  $values: map-values($map);
-  $first-value: nth($values, 1);
+@mixin assert-starts-at-zero($map) {
+  $values: map.values($map);
+  $first-value: list.nth($values, 1);
   @if $first-value != 0 {
     @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #{$first-value}.";
   }
@@ -39,48 +50,48 @@
 // @param {String} $replace ('') - New value
 // @return {String} - Updated string
 @function str-replace($string, $search, $replace: "") {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;
 }
 
 // Color contrast
-@function color-yiq($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
-  $r: red($color);
-  $g: green($color);
-  $b: blue($color);
+@function color-yiq($color, $contrasted-threshold, $dark, $light) {
+  $r: color.channel($color, 'red', $space: rgb);
+  $g: color.channel($color, 'green', $space: rgb);
+  $b: color.channel($color, 'blue', $space: rgb);
 
-  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+  $yiq: math.div(($r * 299) + ($g * 587) + ($b * 114), 1000);
 
-  @if ($yiq >= $yiq-contrasted-threshold) {
+  @if ($yiq >= $contrasted-threshold) {
     @return $dark;
   } @else {
     @return $light;
   }
 }
 
-// Retrieve color Sass maps
-@function color($key: "blue") {
-  @return map-get($colors, $key);
+// Retrieve color Sass maps (map passed explicitly to keep this module acyclic)
+@function color($colors, $key: "blue") {
+  @return map.get($colors, $key);
 }
 
-@function theme-color($key: "primary") {
-  @return map-get($theme-colors, $key);
+@function theme-color($theme-colors, $key: "primary") {
+  @return map.get($theme-colors, $key);
 }
 
-@function gray($key: "100") {
-  @return map-get($grays, $key);
+@function gray($grays, $key: "100") {
+  @return map.get($grays, $key);
 }
 
 // Request a theme color level
-@function theme-color-level($color-name: "primary", $level: 0) {
-  $color: theme-color($color-name);
+@function theme-color-level($theme-colors, $black, $white, $theme-color-interval, $color-name: "primary", $level: 0) {
+  $color: theme-color($theme-colors, $color-name);
   $color-base: if($level > 0, $black, $white);
-  $level: abs($level);
+  $level: math.abs($level);
 
-  @return mix($color-base, $color, $level * $theme-color-interval);
+  @return color.mix($color-base, $color, $level * $theme-color-interval);
 }

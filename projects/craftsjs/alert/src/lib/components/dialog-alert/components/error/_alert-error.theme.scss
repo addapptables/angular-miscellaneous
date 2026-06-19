@@ -1,7 +1,9 @@
+@use 'sass:map';
+
 @mixin alert-error($variables) {
 
     .alert-icon-error {
-      border-color: map-get($variables, color-danger);
+      border-color: map.get($variables, color-danger);
       animation: animateErrorIcon 0.5s;
       display: block;
 
@@ -15,7 +17,7 @@
         position: absolute;
         height: 5px;
         width: 47px;
-        background-color: map-get($variables, color-danger);
+        background-color: map.get($variables, color-danger);
         display: block;
         top: 37px;
         border-radius: 2px;

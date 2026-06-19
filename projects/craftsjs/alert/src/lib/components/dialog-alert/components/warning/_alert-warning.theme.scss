@@ -1,6 +1,8 @@
+@use 'sass:map';
+
 @mixin alert-warning($variables) {
     .alert-icon-warning {
-      border-color: map-get($variables, color-warning);
+      border-color: map.get($variables, color-warning);
       animation: pulseWarning 0.75s infinite alternate;
       display: block;
 
@@ -12,7 +14,7 @@
         top: 10px;
         border-radius: 2px;
         margin-left: -2px;
-        background-color: map-get($variables, color-warning);
+        background-color: map.get($variables, color-warning);
       }
 
       &-dot {
@@ -23,16 +25,16 @@
         margin-left: -4px;
         left: 50%;
         bottom: -11px;
-        background-color: map-get($variables, color-warning);
+        background-color: map.get($variables, color-warning);
       }
     }
 
     @keyframes pulseWarning {
       from {
-        border-color: map-get($variables, color-warning);
+        border-color: map.get($variables, color-warning);
       }
       to {
-        border-color: map-get($variables, color-warning);
+        border-color: map.get($variables, color-warning);
       }
     }
 }

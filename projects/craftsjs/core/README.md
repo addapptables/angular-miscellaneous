@@ -94,8 +94,21 @@ export class AppModule {}
 
 ## Styles (grid)
 
-Add the grid theme to your global styles:
+The Bootstrap-style grid is now shipped as **compiled CSS**. Add it to your
+global styles (or `angular.json` styles array):
 
 ```scss
-@import '~@craftsjs/core/craftsjs-grid.theme';
+@use '@craftsjs/core/craftsjs-grid.theme.css';
 ```
+
+If you only need the grid mixins/variables (not the generated classes), the
+Sass source is still published and can be consumed with the modern module
+system:
+
+```scss
+@use '@craftsjs/core/craftsjs-grid.theme' as grid;
+```
+
+> Note: the legacy `@import '~@craftsjs/core/craftsjs-grid.theme'` syntax (with
+> the `~` prefix) is deprecated. The grid was migrated to the modern Sass module
+> system and no longer emits Sass deprecation warnings under Angular 19.

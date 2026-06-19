@@ -1,9 +1,11 @@
+@use 'sass:map';
+
 @mixin alert-success($variables) {
 
     $green-light: rgba(165, 220, 134, 0.2);
 
     .alert-icon-success {
-      border-color: map-get($variables, color-success);
+      border-color: map.get($variables, color-success);
       display: block;
       margin: 30px auto;
 
@@ -50,7 +52,7 @@
       &-hide-corners {
         width: 5px;
         height: 90px;
-        background-color: map-get($variables, text);
+        background-color: map.get($variables, text);
         padding: 1px;
         position: absolute;
         left: 28px;
@@ -61,7 +63,7 @@
 
       &-line {
         height: 5px;
-        background-color: map-get($variables, color-success);
+        background-color: map.get($variables, color-success);
         display: block;
         border-radius: 2px;
         position: absolute;

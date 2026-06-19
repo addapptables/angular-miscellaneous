@@ -163,13 +163,25 @@ export class NotifierCustomSuccessComponent {
 ## Styles
 
 ```scss
-@import '~@angular/material/theming';
-@import '~@craftsjs/notifier/craftsjs-notifier.theme';
+@use '@angular/material' as mat;
+@use '@craftsjs/notifier/craftsjs-notifier.theme' as notifier;
 
-$craftsjs-app-primary: mat-palette($mat-teal, 800);
-$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$craftsjs-app-warn: mat-palette($mat-red);
-$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+@include mat.core();
+
+$craftsjs-app-primary: mat.m2-define-palette(mat.$m2-teal-palette, 800);
+$craftsjs-app-accent:  mat.m2-define-palette(mat.$m2-pink-palette, 800, A100, 100);
+$craftsjs-app-warn:    mat.m2-define-palette(mat.$m2-red-palette);
+$craftsjs-app-theme: mat.m2-define-light-theme((
+    color: (
+        primary: $craftsjs-app-primary,
+        accent: $craftsjs-app-accent,
+        warn: $craftsjs-app-warn,
+    ),
+));
+
+// The notifier mixin expects the Material color config map.
+$craftsjs-color-config: mat.m2-get-color-config($craftsjs-app-theme);
+
 $craftsjs-theme-variables: (
     color-info: #20a9d2,
     color-success: #5cb85c,
@@ -177,12 +189,16 @@ $craftsjs-theme-variables: (
     color-warning: #e09d3d
 );
 
-@include mat-core();
+@include mat.all-component-themes($craftsjs-app-theme);
+
 body.theme-default {
-    @include angular-material-theme($craftsjs-app-theme);
-    @include notifier($craftsjs-app-theme, $craftsjs-theme-variables);
+    @include notifier.notifier($craftsjs-color-config, $craftsjs-theme-variables);
 }
 ```
+
+> Note: the library now uses the modern Sass module system (`@use`) and the
+> Angular Material **M2** theming API. The legacy `@import '~@angular/material/theming'`
+> API was removed in Angular Material 19.
 
 - Do not forget to put the theme-default class in the html body
   and ensure Angular Material animations are provided (e.g., provideAnimations()).
