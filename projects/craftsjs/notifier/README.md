@@ -26,7 +26,7 @@ npm i @craftsjs/notifier --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 Install peer dependencies
 

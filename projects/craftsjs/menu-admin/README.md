@@ -247,6 +247,20 @@ body.theme-default {
 }
 ```
 
+### Multiple themes (theme switching)
+
+`menu($theme, $variables)` emits the full structure plus colors. To support more
+than one theme, emit the structure once and apply only the colors per theme with
+`menu-color($theme)`:
+
+```scss
+// structure once
+body { @include menu.menu($light-color-config, $craftsjs-theme-variables); }
+
+// colors per theme
+body.theme-dark { @include menu.menu-color($dark-color-config); }
+```
+
 > Note: the library now uses the modern Sass module system (`@use`) and the
 > Angular Material **M2** theming API. The legacy `@import '~@angular/material/theming'`
 > API was removed in Angular Material 19. The grid is shipped as compiled CSS at
@@ -273,4 +287,4 @@ Background menu sidebar
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)

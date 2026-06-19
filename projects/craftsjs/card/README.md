@@ -27,7 +27,7 @@ npm i @craftsjs/card --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 Install peer dependencies
 
@@ -144,6 +144,20 @@ $craftsjs-theme-variables: (
 body.theme-default {
     @include card.card($craftsjs-app-theme, $craftsjs-theme-variables);
 }
+```
+
+### Multiple themes (theme switching)
+
+`card($theme, $variables)` emits the full structure plus colors. To support more
+than one theme, emit the structure once and apply only the colors per theme with
+`card-color($theme)`:
+
+```scss
+// structure once
+body { @include card.card($light-theme, $craftsjs-theme-variables); }
+
+// colors per theme
+body.theme-dark { @include card.card-color($dark-theme); }
 ```
 
 > Note: the library now uses the modern Sass module system (`@use`) and the

@@ -23,7 +23,15 @@ Highlights
 - Build pipeline: replaced `scss-bundle` (which does not understand `@use`)
   with a `sass`-based step that ships theme partial trees and compiles the grid
   to CSS (`compile-scss.js`).
-- Documentation: README theming sections updated to the modern `@use` + M2 API.
+- Toolchain: bumped Angular framework, CLI, build-angular, compiler-cli and
+  language-service to 19.2.25 (`@angular/cdk`/`@angular/material` stay at 19.2.19,
+  their latest 19.2.x).
+- Documentation:
+  - README theming sections updated to the modern `@use` + M2 API.
+  - Added the missing **Styles** section to `@craftsjs/modal` (it ships a theme
+    mixin but had no styling docs).
+  - Documented the `*-color` mixins (card/alert/menu/modal) for theme switching.
+  - Bumped the "Current version" line in every package README to 7.0.1.
 
 Upgrade instructions
 1. Install the v7.0.1 packages:

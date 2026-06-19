@@ -26,7 +26,7 @@ npm i @craftsjs/alert --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 Install peer dependencies
 
@@ -148,6 +148,20 @@ $craftsjs-theme-variables: (
 body.theme-default {
     @include alert.alert($craftsjs-theme-variables, $craftsjs-color-config);
 }
+```
+
+### Multiple themes (theme switching)
+
+`alert($variables, $theme)` emits the full structure plus colors. To support
+more than one theme, emit the structure once and apply only the colors per theme
+with `alert-color($theme)`:
+
+```scss
+// structure once
+body { @include alert.alert($craftsjs-theme-variables, $light-color-config); }
+
+// colors per theme
+body.theme-dark { @include alert.alert-color($dark-color-config); }
 ```
 
 > Note: the library now uses the modern Sass module system (`@use`) and the

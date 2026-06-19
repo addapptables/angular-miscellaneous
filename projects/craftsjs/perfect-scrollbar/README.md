@@ -21,7 +21,7 @@ npm i @craftsjs/perfect-scrollbar perfect-scrollbar --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 ## How to use
 
