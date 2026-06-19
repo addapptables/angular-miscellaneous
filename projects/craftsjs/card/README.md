@@ -27,7 +27,7 @@ npm i @craftsjs/card --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 Install peer dependencies
 
@@ -108,14 +108,26 @@ Oval card
 - Finally, import the styles into your application
 
 ```scss
-@import '~@craftsjs/core/craftsjs-grid.theme';
-@import '~@angular/material/theming';
-@import '~@craftsjs/card/craftsjs-card.theme';
+@use '@angular/material' as mat;
+@use '@craftsjs/card/craftsjs-card.theme' as card;
 
-$craftsjs-app-primary: mat-palette($mat-teal, 800);
-$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$craftsjs-app-warn: mat-palette($mat-red);
-$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+// Grid utility classes are now shipped as plain CSS:
+//   @use '@craftsjs/core/craftsjs-grid.theme.css';
+// (or import it from your global styles / angular.json)
+
+@include mat.core();
+
+$craftsjs-app-primary: mat.m2-define-palette(mat.$m2-teal-palette, 800);
+$craftsjs-app-accent:  mat.m2-define-palette(mat.$m2-pink-palette, 800, A100, 100);
+$craftsjs-app-warn:    mat.m2-define-palette(mat.$m2-red-palette);
+$craftsjs-app-theme: mat.m2-define-light-theme((
+    color: (
+        primary: $craftsjs-app-primary,
+        accent: $craftsjs-app-accent,
+        warn: $craftsjs-app-warn,
+    ),
+));
+
 $craftsjs-theme-variables: (
     text: white,
     border-radius: 5px,
@@ -126,12 +138,32 @@ $craftsjs-theme-variables: (
     color-danger: #d43934,
     gray-color: #696868
 );
-@include mat-core();
+
+@include mat.all-component-themes($craftsjs-app-theme);
+
 body.theme-default {
-    @include angular-material-theme($craftsjs-app-theme);
-    @include card($craftsjs-app-theme, $craftsjs-theme-variables);
+    @include card.card($craftsjs-app-theme, $craftsjs-theme-variables);
 }
 ```
+
+### Multiple themes (theme switching)
+
+`card($theme, $variables)` emits the full structure plus colors. To support more
+than one theme, emit the structure once and apply only the colors per theme with
+`card-color($theme)`:
+
+```scss
+// structure once
+body { @include card.card($light-theme, $craftsjs-theme-variables); }
+
+// colors per theme
+body.theme-dark { @include card.card-color($dark-theme); }
+```
+
+> Note: the library now uses the modern Sass module system (`@use`) and the
+> Angular Material **M2** theming API. The legacy `@import '~@angular/material/theming'`
+> API was removed in Angular Material 19. The Bootstrap-style grid is now shipped
+> as compiled CSS at `@craftsjs/core/craftsjs-grid.theme.css`.
 
 - Do not forget to put the theme-default class in the html body
   and ensure Angular Material animations are provided (e.g., in main.ts: provideAnimations()).

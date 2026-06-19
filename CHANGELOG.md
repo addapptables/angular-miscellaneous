@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v7.0.1] - 2026-06-19
+
+Highlights
+- SCSS modernization for Angular/Material 19: migrated all theme styles off the
+  deprecated Sass legacy API to the modern module system (`@use` / `@forward`).
+- Removed every Sass deprecation warning (`@import`, `global-builtin`,
+  `color-functions`, division `/`) emitted when consuming the themes under
+  Angular Material 19. Verified: all six themes compile with **0 warnings**.
+- Replaced the `mat-palette` / `mat-light-theme` / `angular-material-theme`
+  legacy Material theming (removed in Material 19) with the M2 API
+  (`mat.m2-define-palette`, `mat.m2-define-light-theme`).
+- Bootstrap-style grid (`@craftsjs/core`): broke the Bootstrap 4 circular
+  dependency between `_functions.scss` and `_variables.scss` so the grid can use
+  pure `@use`; converted `map-get`→`map.get`, `darken`/`lighten`→`color.adjust`,
+  `/`→`math.div`, etc. The grid is now also published as compiled CSS at
+  `@craftsjs/core/craftsjs-grid.theme.css`.
+- Fixed `@craftsjs/menu-admin` which relied on global scope leakage from the
+  grid (`$border-radius`, `media-breakpoint-down`); it is now self-contained.
+- Build pipeline: replaced `scss-bundle` (which does not understand `@use`)
+  with a `sass`-based step that ships theme partial trees and compiles the grid
+  to CSS (`compile-scss.js`).
+- Toolchain: bumped Angular framework, CLI, build-angular, compiler-cli and
+  language-service to 19.2.25 (`@angular/cdk`/`@angular/material` stay at 19.2.19,
+  their latest 19.2.x).
+- Documentation:
+  - README theming sections updated to the modern `@use` + M2 API.
+  - Added the missing **Styles** section to `@craftsjs/modal` (it ships a theme
+    mixin but had no styling docs).
+  - Documented the `*-color` mixins (card/alert/menu/modal) for theme switching.
+  - Bumped the "Current version" line in every package README to 7.0.1.
+
+Upgrade instructions
+1. Install the v7.0.1 packages:
+
+```bash
+npm i @craftsjs/menu-admin@7.0.1 @craftsjs/core@7.0.1 @craftsjs/alert@7.0.1 @craftsjs/modal@7.0.1 @craftsjs/notifier@7.0.1 @craftsjs/card@7.0.1 @craftsjs/perfect-scrollbar@7.0.1 @craftsjs/ngrx-action@7.0.1
+```
+
+2. Update your theme setup to the modern Sass module + Material M2 API (see each
+   package README). Replace `@import '~@angular/material/theming'` /
+   `mat-palette` / `mat-light-theme` with `@use '@angular/material' as mat;` and
+   `mat.m2-define-*`. The grid is now `@use '@craftsjs/core/craftsjs-grid.theme.css'`.
+
 ## [v7.0.0] - 2026-06-18
 
 Highlights

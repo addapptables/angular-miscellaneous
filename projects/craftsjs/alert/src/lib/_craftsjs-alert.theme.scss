@@ -1,10 +1,11 @@
-@import './components/dialog-alert/components/alert-info/alert-info.theme';
-@import './components/dialog-alert/components/alert-success/alert-success.theme';
-@import './components/dialog-alert/components/error/alert-error.theme';
-@import './components/dialog-alert/components/warning/alert-warning.theme';
+@use 'sass:map';
+@use './components/dialog-alert/components/alert-info/alert-info.theme' as info;
+@use './components/dialog-alert/components/alert-success/alert-success.theme' as success;
+@use './components/dialog-alert/components/error/alert-error.theme' as error;
+@use './components/dialog-alert/components/warning/alert-warning.theme' as warning;
 
 @mixin alert($variables, $theme) {
-    $foreground: map-get($theme, foreground);
+    $foreground: map.get($theme, foreground);
 
     .alert {
         &-icon {
@@ -33,7 +34,7 @@
         }
 
         &-title {
-            color: map-get($foreground, 'text');
+            color: map.get($foreground, 'text');
             font-weight: 600;
             text-transform: none;
             position: relative;
@@ -67,7 +68,7 @@
             margin: 0;
             padding: 0 10px;
             font-weight: 400;
-            color: map-get($foreground, 'text');
+            color: map.get($foreground, 'text');
             overflow-wrap: break-word;
             box-sizing: border-box;
             width: 100%;
@@ -106,24 +107,24 @@
             }
         }
     }
-    @include alert-error($variables);
-    @include alert-warning($variables);
-    @include alert-info($variables);
-    @include alert-success($variables);
+    @include error.alert-error($variables);
+    @include warning.alert-warning($variables);
+    @include info.alert-info($variables);
+    @include success.alert-success($variables);
 }
 
 @mixin alert-color($theme) {
-    $foreground: map-get($theme, foreground);
-    color: map-get($foreground, 'text');
+    $foreground: map.get($theme, foreground);
+    color: map.get($foreground, 'text');
 
     .alert {
         // change color title
         &-title {
-            color: map-get($foreground, 'text');
+            color: map.get($foreground, 'text');
         }
         // change color text
         &-text {
-            color: map-get($foreground, 'text');
+            color: map.get($foreground, 'text');
         }
     }
 }

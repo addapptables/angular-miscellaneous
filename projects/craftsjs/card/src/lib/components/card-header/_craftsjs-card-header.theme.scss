@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @mixin box_shadow_header_color($color) {
     box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px $color
 }
@@ -19,28 +21,28 @@
                 }
             }
             &-blue{
-                background-color: map-get($variables, color-blue);
-                @include box_shadow_header_color(map-get($variables, color-blue));
+                background-color: map.get($variables, color-blue);
+                @include box_shadow_header_color(map.get($variables, color-blue));
             }
             &-danger{
-                background-color: map-get($variables, color-danger);
-                @include box_shadow_header_color(map-get($variables, color-danger));
+                background-color: map.get($variables, color-danger);
+                @include box_shadow_header_color(map.get($variables, color-danger));
             }
             &-warning{
-                background-color: map-get($variables, color-warning);
-                @include box_shadow_header_color(map-get($variables, color-warning));
+                background-color: map.get($variables, color-warning);
+                @include box_shadow_header_color(map.get($variables, color-warning));
             }
             &-success{
-                background-color: map-get($variables, color-success);
-                @include box_shadow_header_color(map-get($variables, color-success));
+                background-color: map.get($variables, color-success);
+                @include box_shadow_header_color(map.get($variables, color-success));
             }
             &-info{
-                background-color: map-get($variables, color-info);
-                @include box_shadow_header_color(map-get($variables, color-info));
+                background-color: map.get($variables, color-info);
+                @include box_shadow_header_color(map.get($variables, color-info));
             }
             &-gray{
-                background-color: map-get($variables, gray-color);
-                @include box_shadow_header_color(map-get($variables, gray-color));
+                background-color: map.get($variables, gray-color);
+                @include box_shadow_header_color(map.get($variables, gray-color));
             }
         }
     }

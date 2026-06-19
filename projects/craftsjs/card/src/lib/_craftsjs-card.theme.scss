@@ -1,13 +1,14 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
-@import './components/card-header/craftsjs-card-header.theme';
+@use './components/card-header/craftsjs-card-header.theme' as header;
 
 @mixin card($theme, $variables) {
 
     // Extract Material color config from the provided $theme (M2)
     $color-config: mat.m2-get-color-config($theme);
-    $accent: map-get($color-config, accent);
-    $background: map-get($color-config, background);
-    $foreground: map-get($color-config, foreground);
+    $accent: map.get($color-config, accent);
+    $background: map.get($color-config, background);
+    $foreground: map.get($color-config, foreground);
 
     //card
     $card-padding: 12px 0;
@@ -39,7 +40,7 @@
         width: 100%;
         margin: $card-padding;
         box-shadow: $card-box-shadow;
-    background: map-get($background, 'card');
+    background: map.get($background, 'card');
         margin-top: 32px;
         &-header {
             &-oval {
@@ -47,7 +48,7 @@
                 color: mat.m2-get-color-from-palette($accent, default-contrast);
                 padding: 20px 15px;
                 margin: $card-header-margin;
-                border-radius: map-get($variables, border-radius);
+                border-radius: map.get($variables, border-radius);
                 display: inline-block;
                 box-shadow: $card-header-box-shadow;
             }
@@ -81,7 +82,7 @@
         &-footer {
             margin: $card-footer-margin;
             padding-top: $card-padding-top;
-            border-top: 1px solid map-get($foreground, divider);
+            border-top: 1px solid map.get($foreground, divider);
         }
         &-divider {
             display: block;
@@ -89,26 +90,26 @@
             border-top-width: 1px;
             border-top-style: dashed;
             margin-top: 10px;
-            color: map-get($foreground, 'divider');
+            color: map.get($foreground, 'divider');
         }
     }
-    @include addapptable-card-header($variables);
+    @include header.addapptable-card-header($variables);
 }
 
 @mixin card-color($theme) {
 
     // Extract Material color config from the provided $theme (M2)
     $color-config: mat.m2-get-color-config($theme);
-    $accent: map-get($color-config, accent);
-    $background: map-get($color-config, background);
-    $foreground: map-get($color-config, foreground);
+    $accent: map.get($color-config, accent);
+    $background: map.get($color-config, background);
+    $foreground: map.get($color-config, foreground);
 
     $accent-hue: default;
     $background-color-header: mat.m2-get-color-from-palette($accent, $accent-hue);
         $card-header-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px mat.m2-get-color-from-palette($accent, $accent-hue);
     
     .card {
-    background: map-get($background, 'card');
+    background: map.get($background, 'card');
         &-header {
             &-oval {
                 background-color: $background-color-header;
@@ -117,10 +118,10 @@
             }
         }
         &-divider {
-            color: map-get($foreground, 'divider');
+            color: map.get($foreground, 'divider');
         }
         &-footer {
-            border-top: 1px solid map-get($foreground, divider);
+            border-top: 1px solid map.get($foreground, divider);
         }
     }
 }

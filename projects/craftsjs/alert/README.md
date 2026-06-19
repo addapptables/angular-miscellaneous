@@ -26,7 +26,7 @@ npm i @craftsjs/alert --S
 
 ## Compatibility
 
-Current version: 7.0.0 (Compatible with Angular v19)
+Current version: 7.0.1 (Compatible with Angular v19)
 
 Install peer dependencies
 
@@ -117,13 +117,25 @@ dialog.beforeClose().subscribe((result) => {
 - Finally, it is important to import the styles to the application
 
 ```scss
-@import '~@craftsjs/alert/craftsjs-alert.theme';
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@use '@craftsjs/alert/craftsjs-alert.theme' as alert;
 
-$craftsjs-app-primary: mat-palette($mat-teal, 800);
-$craftsjs-app-accent:  mat-palette($mat-pink, 800, A100, 100);
-$craftsjs-app-warn: mat-palette($mat-red);
-$craftsjs-app-theme: mat-light-theme($craftsjs-app-primary, $craftsjs-app-accent, $craftsjs-app-warn);
+@include mat.core();
+
+$craftsjs-app-primary: mat.m2-define-palette(mat.$m2-teal-palette, 800);
+$craftsjs-app-accent:  mat.m2-define-palette(mat.$m2-pink-palette, 800, A100, 100);
+$craftsjs-app-warn:    mat.m2-define-palette(mat.$m2-red-palette);
+$craftsjs-app-theme: mat.m2-define-light-theme((
+    color: (
+        primary: $craftsjs-app-primary,
+        accent: $craftsjs-app-accent,
+        warn: $craftsjs-app-warn,
+    ),
+));
+
+// The alert mixin expects the Material color config map.
+$craftsjs-color-config: mat.m2-get-color-config($craftsjs-app-theme);
+
 $craftsjs-theme-variables: (
     color-info: #20a9d2,
     color-success: #5cb85c,
@@ -131,12 +143,30 @@ $craftsjs-theme-variables: (
     color-warning: #e09d3d
 );
 
-@include mat-core();
-body.theme-default{
-    @include angular-material-theme($craftsjs-app-theme);
-    @include alert($craftsjs-theme-variables);
+@include mat.all-component-themes($craftsjs-app-theme);
+
+body.theme-default {
+    @include alert.alert($craftsjs-theme-variables, $craftsjs-color-config);
 }
 ```
+
+### Multiple themes (theme switching)
+
+`alert($variables, $theme)` emits the full structure plus colors. To support
+more than one theme, emit the structure once and apply only the colors per theme
+with `alert-color($theme)`:
+
+```scss
+// structure once
+body { @include alert.alert($craftsjs-theme-variables, $light-color-config); }
+
+// colors per theme
+body.theme-dark { @include alert.alert-color($dark-color-config); }
+```
+
+> Note: the library now uses the modern Sass module system (`@use`) and the
+> Angular Material **M2** theming API. The legacy `@import '~@angular/material/theming'`
+> / `mat-palette` / `mat-light-theme` API was removed in Angular Material 19.
 
 - Don't forget to put the theme-default class in the html body
   and ensure Angular Material animations are provided (e.g., `provideAnimations()` in main.ts).
